@@ -8,6 +8,8 @@ namespace ShootingStar_1YA_CHSU
 {
     internal class Program
     {
+
+        
         // Spielfeld
         struct Spielfeld
         {
@@ -15,12 +17,15 @@ namespace ShootingStar_1YA_CHSU
             public bool Rand_Links;
             public bool Rand_Rechts;
             public bool Rand_Unten;
+
             public bool playerPos_LeftF;
             public bool playerPos_RightF;
             public bool playerPos_Body;
             public bool playerPos_Head;
             public bool LeftHBottom;
             public bool RightHBottom;
+
+            public bool enemy;
            
 
 
@@ -53,6 +58,8 @@ namespace ShootingStar_1YA_CHSU
             public int[] enemyPos_3 = new int[2] { 3, 39 };
             public int[] enemyPos_4 = new int[2] { 4, 39 };
             public int[] enemyPos_5 = new int[2] { 5, 39 };
+
+            public int enemy_ID;
         }
 
 
@@ -60,18 +67,24 @@ namespace ShootingStar_1YA_CHSU
 
         static void Main(string[] args)
         {
-            // Klassen
-            Gegner enemyTypeLow = new Gegner();
-           
-            Player player = new Player();
+            
 
             // Werte Variablen
-            ushort field_enemys = 0;
+            byte max_enemys = 3;
             const int gameWidth = 40;
             const int gameHeight = 7;
 
             //Strukturen
             Spielfeld[,] gamefield = new Spielfeld[gameHeight, gameWidth];
+
+            // Klassen
+            Gegner[] enemyTypeLow = new Gegner[3];
+            for (int i = 0; i < max_enemys; i++)
+            {
+                enemyTypeLow[i] = new Gegner();
+            }
+            
+            Player player = new Player();
 
             // Spielfeld Rand Initialisieren
             {
