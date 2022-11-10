@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +27,9 @@ namespace ShootingStar_1YA_CHSU
             public bool LeftHBottom;
             public bool RightHBottom;
 
-            public bool enemy;
+            public bool bEnemyType_Low;
+            public bool bEnemyType_High;
+            public bool bEnemyType_Mid;
            
 
 
@@ -52,10 +56,7 @@ namespace ShootingStar_1YA_CHSU
         }
         class Gegner
         {
-            public int[] enemyPos_0 = new int[2] { 0, 39 };
-            public int[] enemyPos_1 = new int[2] { 1, 39 };
-            public int[] enemyPos_2 = new int[2] { 2, 39 };
-            public int[] enemyPos_3 = new int[2] { 3, 39 };
+          
             public int[] enemyPos_4 = new int[2] { 4, 39 };
             public int[] enemyPos_5 = new int[2] { 5, 39 };
 
@@ -67,23 +68,30 @@ namespace ShootingStar_1YA_CHSU
 
         static void Main(string[] args)
         {
-            
+
 
             // Werte Variablen
+            int Points = 0;
             byte max_enemys = 3;
             const int gameWidth = 40;
             const int gameHeight = 7;
+            uint gameTicks = 0;
+            // 30 Leicht 1 Schwer ?
+            uint  gameMode = 30;
+            uint Takt = 1000;
 
             //Strukturen
             Spielfeld[,] gamefield = new Spielfeld[gameHeight, gameWidth];
 
-            // Klassen
+            // Klassen  Gegner
             Gegner[] enemyTypeLow = new Gegner[3];
             for (int i = 0; i < max_enemys; i++)
             {
                 enemyTypeLow[i] = new Gegner();
+                enemyTypeLow[i].enemy_ID = i;
             }
             
+            // Klasse Spieler
             Player player = new Player();
 
             // Spielfeld Rand Initialisieren
@@ -137,22 +145,58 @@ namespace ShootingStar_1YA_CHSU
                 }
             }
 
-            DisplayGame(gamefield, gameHeight, gameWidth, player);
+            Console.WriteLine("Willkommen zu Shooting Star möchtest du das Spiel Starten ?");
+            Console.WriteLine("------------------------------------------------");
+            Console.WriteLine("'S' Drücken um Spiel zu Starten");
+            char menueEingabe = Console.ReadKey().KeyChar;
 
-            // Game
-            while (true)
+            switch(menueEingabe)
             {
-                Jump(gamefield, player, gameHeight, gameWidth);
-            } //Enemy Tool
+
+                // Spiel Starten
+                case 'S':
+                case 's':
+                    {
+
+                        DisplayGame(gamefield, gameHeight, gameWidth, player, enemyTypeLow, Points);
+
+                        // Game
+                        while (true)
+                        {
+
+                            Jump(gamefield, player, gameHeight, gameWidth, enemyTypeLow, Points);
+                            gameTicks = SpawnEnemys(enemyTypeLow, gamefield, gameTicks, Takt, gameMode, gameHeight, gameWidth, player, Points);
+                            gameTicks++;
+                            if (gameTicks % 2000 == 0)
+                            {
+                                Points++;
+                            }
+
+
+
+                        }
+
+
+
+                    }
+
+
+            }
+
+
+           
 
         } // Main Ende
 
 
 
-        static void DisplayGame(Spielfeld[,] gamefield, int gameHeight, int gameWidth, Player player)
+        static void DisplayGame(Spielfeld[,] gamefield, int gameHeight, int gameWidth, Player player , Gegner[] enemyTypeLow , int Points)
         {
+            Console.WriteLine("Deine Punkte : {0}", Points);
+
             for (int i = 0; i < gameHeight; i++)
             {
+                
                 for (int x = 0; x < gameWidth; x++)
 
                 {
@@ -204,9 +248,12 @@ namespace ShootingStar_1YA_CHSU
                     {
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.Write(player.RightHBottom);
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.White;  
+                    }
 
-                       
+                    else if (gamefield[i,x].bEnemyType_Low == true)
+                    {
+                        Console.Write('|');
                     }
 
 
@@ -221,7 +268,7 @@ namespace ShootingStar_1YA_CHSU
 
         }
 
-        static void Jump(Spielfeld[,] gamefield, Player player, int gameHeight, int gameWidth)
+        static void Jump(Spielfeld[,] gamefield, Player player, int gameHeight, int gameWidth , Gegner[] enemyTypeLow , int Points)
         {
             if (Console.KeyAvailable)
             {
@@ -273,7 +320,7 @@ namespace ShootingStar_1YA_CHSU
 
 
                             Console.Clear();
-                            DisplayGame(gamefield, gameHeight, gameWidth, player);
+                            DisplayGame(gamefield, gameHeight, gameWidth, player , enemyTypeLow , Points );
                         }
 
                         if (Key.Key == ConsoleKey.S && player.playerPosition_LeftF[0] < 5)
@@ -317,7 +364,7 @@ namespace ShootingStar_1YA_CHSU
                             }
 
                                 Console.Clear();
-                            DisplayGame(gamefield, gameHeight, gameWidth, player);
+                            DisplayGame(gamefield, gameHeight, gameWidth, player, enemyTypeLow , Points);
                         }
                     }
                 }
@@ -327,11 +374,50 @@ namespace ShootingStar_1YA_CHSU
 
         }
 
-        static int SpawnEnemys(Gegner enemyType_Low)
+        static uint SpawnEnemys(Gegner[] enemyTypeLow , Spielfeld[,] gamefield , uint gameTicks , uint Takt , uint gameMode , int gameHeight , int gameWidth , Player player , int points)
         {
+           
 
+             if(gameTicks == Takt*5)
+            {
+                
+                gamefield[enemyTypeLow[0].enemyPos_5[0], enemyTypeLow[0].enemyPos_5[1]].bEnemyType_Low = false;
+                gamefield[enemyTypeLow[0].enemyPos_4[0], enemyTypeLow[0].enemyPos_4[1]].bEnemyType_Low = false;
 
-            return 0;
+                enemyTypeLow[0].enemyPos_5[1]--;
+                enemyTypeLow[0].enemyPos_4[1]--;
+
+                gamefield[enemyTypeLow[0].enemyPos_5[0], enemyTypeLow[0].enemyPos_5[1]].bEnemyType_Low = true;
+                gamefield[enemyTypeLow[0].enemyPos_4[0], enemyTypeLow[0].enemyPos_4[1]].bEnemyType_Low = true;
+
+               gameTicks = Takt;
+                
+                // Delete Enemy and Restore at beginning
+                if (enemyTypeLow[0].enemyPos_5[1] == 0 || enemyTypeLow[0].enemyPos_4[1] == 0)
+                {
+                    gamefield[enemyTypeLow[0].enemyPos_5[0], enemyTypeLow[0].enemyPos_5[1]].bEnemyType_Low = false;
+                    gamefield[enemyTypeLow[0].enemyPos_4[0], enemyTypeLow[0].enemyPos_4[1]].bEnemyType_Low = false;
+
+                    enemyTypeLow[0] = null;
+                    enemyTypeLow[0] = new Gegner();
+                }
+
+                Console.Clear();
+                DisplayGame(gamefield, gameHeight, gameWidth, player, enemyTypeLow , points);
+                return gameTicks;
+
+            }
+
+             return gameTicks;
+
+            
+
+          
+        }
+
+        static bool isNumeric(string A)
+        {
+            return A.All(char.IsNumber);
         }
 
     } // Class Ende
