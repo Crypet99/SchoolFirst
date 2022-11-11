@@ -64,31 +64,53 @@ namespace ShootingStar_1YA_CHSU
             public int enemy_ID;
         }
 
+        class Werte
+        {
+            // Werte Variablen
+            public int Points;
+            public short jump_cooldown;
+            public uint JumpTicks;
+            public byte max_enemys;
+            public  int gameWidth;
+            public  int gameHeight;
+            public uint gameTicks;
+            // 30 Leicht 1 Schwer ?
+            public uint gameMode;
+            public uint Takt;
+            public short jumpHigh = -3;
+
+        }
+
 
 
 
         static void Main(string[] args)
         {
 
+            Werte wert = new Werte();
+            wert.Points = 0;
+            wert.JumpTicks = 0;
+            wert.jump_cooldown = 0;
+            wert.max_enemys = 3;
+            wert.gameTicks = 0;
+            wert.gameMode = 30;
+            wert.Takt = 1000;
+            wert.gameHeight = 7;
+            wert.gameWidth = 40;
+            
 
-            // Werte Variablen
-            int Points = 0;
-            short jump_cooldown = 0;
-            uint JumpTicks = 0;
-            byte max_enemys = 3;
-            const int gameWidth = 40;
-            const int gameHeight = 7;
-            uint gameTicks = 0;
-            // 30 Leicht 1 Schwer ?
-            uint gameMode = 30;
-            uint Takt = 1000;
+
+            
+
+
+
 
             //Strukturen
-            Spielfeld[,] gamefield = new Spielfeld[gameHeight, gameWidth];
+            Spielfeld[,] gamefield = new Spielfeld[wert.gameHeight, wert.gameWidth];
 
             // Klassen  Gegner
             Gegner[] enemyTypeLow = new Gegner[3];
-            for (int i = 0; i < max_enemys; i++)
+            for (int i = 0; i < wert.max_enemys; i++)
             {
                 enemyTypeLow[i] = new Gegner();
                 enemyTypeLow[i].enemy_ID = i;
@@ -114,20 +136,20 @@ namespace ShootingStar_1YA_CHSU
 
                 // Rand Rechts
                 {
-                    gamefield[0, gameWidth - 1].Rand_Rechts = true;
-                    gamefield[1, gameWidth - 1].Rand_Rechts = true;
-                    gamefield[2, gameWidth - 1].Rand_Rechts = true;
-                    gamefield[3, gameWidth - 1].Rand_Rechts = true;
-                    gamefield[4, gameWidth - 1].Rand_Rechts = true;
-                    gamefield[5, gameWidth - 1].Rand_Rechts = true;
-                    gamefield[6, gameWidth - 1].Rand_Rechts = true;
+                    gamefield[0, wert.gameWidth - 1].Rand_Rechts = true;
+                    gamefield[1, wert.gameWidth - 1].Rand_Rechts = true;
+                    gamefield[2, wert.gameWidth - 1].Rand_Rechts = true;
+                    gamefield[3, wert.gameWidth - 1].Rand_Rechts = true;
+                    gamefield[4, wert.gameWidth - 1].Rand_Rechts = true;
+                    gamefield[5, wert.gameWidth - 1].Rand_Rechts = true;
+                    gamefield[6, wert.gameWidth - 1].Rand_Rechts = true;
 
                 }
 
                 // Rand Unten
                 {
 
-                    for (int i = 0; i < gameWidth - 1; i++)
+                    for (int i = 0; i < wert.gameWidth - 1; i++)
                     {
 
                         gamefield[6, i].Rand_Unten = true;
@@ -161,23 +183,24 @@ namespace ShootingStar_1YA_CHSU
                 case 's':
                     {
 
-                        DisplayGame(gamefield, gameHeight, gameWidth, player, enemyTypeLow, Points);
+                        DisplayGame(gamefield, player, enemyTypeLow,wert);
 
                         // Game
                         while (true)
                         {
 
-                            jump_cooldown =  Jump(gamefield, player, gameHeight, gameWidth, enemyTypeLow, Points ,  jump_cooldown);
-                            gameTicks = SpawnEnemys(enemyTypeLow, gamefield, gameTicks, Takt, gameMode, gameHeight, gameWidth, player, Points);
-                            gameTicks++;
                             
+                            wert.jump_cooldown = Jump(gamefield, player, enemyTypeLow, wert);
+                            wert.gameTicks = SpawnEnemys(enemyTypeLow, gamefield, player, wert);
+                            wert.gameTicks++;
+
                             // Zähle Punkte
-                            if (gameTicks % 2000 == 0)
+                            if (wert.gameTicks % 2000 == 0)
                             {
-                                Points++;
+                                wert.Points++;
                             }
 
-                           
+
 
 
 
@@ -198,14 +221,14 @@ namespace ShootingStar_1YA_CHSU
 
 
 
-        static void DisplayGame(Spielfeld[,] gamefield, int gameHeight, int gameWidth, Player player, Gegner[] enemyTypeLow, int Points)
+        static void DisplayGame(Spielfeld[,] gamefield, Player player, Gegner[] enemyTypeLow, Werte wert)
         {
-            Console.WriteLine("Deine Punkte : {0}", Points);
+            Console.WriteLine("Deine Punkte : {0}", wert.Points);
 
-            for (int i = 0; i < gameHeight; i++)
+            for (int i = 0; i < wert.gameHeight; i++)
             {
 
-                for (int x = 0; x < gameWidth; x++)
+                for (int x = 0; x < wert.gameWidth; x++)
 
                 {
                     if (gamefield[i, x].Rand_Links == true)
@@ -276,18 +299,18 @@ namespace ShootingStar_1YA_CHSU
 
         }
 
-        static short Jump(Spielfeld[,] gamefield, Player player, int gameHeight, int gameWidth, Gegner[] enemyTypeLow, int Points ,  short jump_cooldown)
+        static short Jump(Spielfeld[,] gamefield, Player player,  Gegner[] enemyTypeLow, Werte wert)
         {
 
-          
+
 
             if (Console.KeyAvailable)
             {
                 if (player.playerPosition_LeftF[0] <= 5)
                 {
-                    if (jump_cooldown >= 0 && jump_cooldown < 3)
+                    if (wert.jump_cooldown == 0)
                     {
-                        
+
 
                         if (player.playerPosition_Head[0] >= 0)
                         {
@@ -297,48 +320,53 @@ namespace ShootingStar_1YA_CHSU
                             {
 
 
-                                InitializePlayerMovement(gamefield, player, -1);
+                                InitializePlayerMovement(gamefield, player, wert.jumpHigh);
                                 Console.Clear();
-                                DisplayGame(gamefield, gameHeight, gameWidth, player, enemyTypeLow, Points);
-                              
-                                
-                                
+                                DisplayGame(gamefield, player, enemyTypeLow, wert );
+                                wert.jump_cooldown = 3;
+                                return wert.jump_cooldown;
+
+
 
                             }
 
-                            
 
 
 
-                            if (Key.Key == ConsoleKey.S && player.playerPosition_LeftF[0] < 5)
-                            {
-                                InitializePlayerMovement(gamefield, player, 1);
 
-                                Console.Clear();
-                                DisplayGame(gamefield, gameHeight, gameWidth, player, enemyTypeLow, Points); 
-                            }
+                            /* if (Key.Key == ConsoleKey.S && player.playerPosition_LeftF[0] < 5)
+                             {
+                                 InitializePlayerMovement(gamefield, player, 1);
+
+                                 Console.Clear();
+                                 DisplayGame(gamefield, gameHeight, gameWidth, player, enemyTypeLow, Points); 
+                             }*/
                         }
 
-                        
+
                     }
-                   
                     
 
-                   
+
+
+
                 }
-                 
+
             }
 
+            
 
-            return 2;
+            return wert.jump_cooldown;
+
+
 
         }
 
-        static uint SpawnEnemys(Gegner[] enemyTypeLow, Spielfeld[,] gamefield, uint gameTicks, uint Takt, uint gameMode, int gameHeight, int gameWidth, Player player, int points)
+        static uint SpawnEnemys(Gegner[] enemyTypeLow, Spielfeld[,] gamefield, Player player, Werte wert)
         {
 
 
-            if (gameTicks == Takt * 5)
+            if (wert.gameTicks == wert.Takt * 5)
             {
 
                 gamefield[enemyTypeLow[0].enemyPos_5[0], enemyTypeLow[0].enemyPos_5[1]].bEnemyType_Low = false;
@@ -350,7 +378,7 @@ namespace ShootingStar_1YA_CHSU
                 gamefield[enemyTypeLow[0].enemyPos_5[0], enemyTypeLow[0].enemyPos_5[1]].bEnemyType_Low = true;
                 gamefield[enemyTypeLow[0].enemyPos_4[0], enemyTypeLow[0].enemyPos_4[1]].bEnemyType_Low = true;
 
-                gameTicks = Takt;
+                wert.gameTicks = wert.Takt;
 
                 // Delete Enemy and Restore at beginning
                 if (enemyTypeLow[0].enemyPos_5[1] == 0 || enemyTypeLow[0].enemyPos_4[1] == 0)
@@ -362,13 +390,27 @@ namespace ShootingStar_1YA_CHSU
                     enemyTypeLow[0] = new Gegner();
                 }
 
+
+
+                
+
+
+                if (wert.jump_cooldown > 0)
+                {
+                    InitializePlayerMovement(gamefield, player, 1);
+                    wert.jump_cooldown--;
+
+                }
+
                 Console.Clear();
-                DisplayGame(gamefield, gameHeight, gameWidth, player, enemyTypeLow, points);
-                return gameTicks;
+                DisplayGame(gamefield, player, enemyTypeLow, wert);
+
+                
+
 
             }
+            return wert.gameTicks;
 
-            return gameTicks;
 
 
 
