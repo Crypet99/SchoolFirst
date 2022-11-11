@@ -67,16 +67,16 @@ namespace ShootingStar_1YA_CHSU
         class Werte
         {
             // Werte Variablen
-            public int Points;
-            public short jump_cooldown;
-            public uint JumpTicks;
-            public byte max_enemys;
-            public  int gameWidth;
-            public  int gameHeight;
-            public uint gameTicks;
+            public int Points = 0;
+            public double jump_cooldown = 0;
+            public uint JumpTicks = 0;
+            public byte max_enemys = 3;
+            public  int gameWidth = 40;
+            public  int gameHeight = 7;
+            public uint gameTicks = 0;
             // 30 Leicht 1 Schwer ?
-            public uint gameMode;
-            public uint Takt;
+            public uint gameMode = 0    ;
+            public uint Takt = 500;
             public short jumpHigh = -3;
 
         }
@@ -86,25 +86,9 @@ namespace ShootingStar_1YA_CHSU
 
         static void Main(string[] args)
         {
-
+            // Variablen
             Werte wert = new Werte();
-            wert.Points = 0;
-            wert.JumpTicks = 0;
-            wert.jump_cooldown = 0;
-            wert.max_enemys = 3;
-            wert.gameTicks = 0;
-            wert.gameMode = 30;
-            wert.Takt = 1000;
-            wert.gameHeight = 7;
-            wert.gameWidth = 40;
             
-
-
-            
-
-
-
-
             //Strukturen
             Spielfeld[,] gamefield = new Spielfeld[wert.gameHeight, wert.gameWidth];
 
@@ -175,6 +159,7 @@ namespace ShootingStar_1YA_CHSU
             Console.WriteLine("'S' Drücken um Spiel zu Starten");
             char menueEingabe = Console.ReadKey().KeyChar;
 
+            // HauptMenue
             switch (menueEingabe)
             {
 
@@ -199,7 +184,7 @@ namespace ShootingStar_1YA_CHSU
                             {
                                 wert.Points++;
                             }
-                            // Komentar
+                           
 
 
 
@@ -219,8 +204,6 @@ namespace ShootingStar_1YA_CHSU
 
 
         } // Main Ende
-
-
 
         static void DisplayGame(Spielfeld[,] gamefield, Player player, Gegner[] enemyTypeLow, Werte wert)
         {
@@ -300,7 +283,7 @@ namespace ShootingStar_1YA_CHSU
 
         }
 
-        static short Jump(Spielfeld[,] gamefield, Player player,  Gegner[] enemyTypeLow, Werte wert)
+        static double Jump(Spielfeld[,] gamefield, Player player,  Gegner[] enemyTypeLow, Werte wert)
         {
 
 
@@ -324,7 +307,7 @@ namespace ShootingStar_1YA_CHSU
                                 InitializePlayerMovement(gamefield, player, wert.jumpHigh);
                                 Console.Clear();
                                 DisplayGame(gamefield, player, enemyTypeLow, wert );
-                                wert.jump_cooldown = 3;
+                                wert.jump_cooldown = 18;
                                 return wert.jump_cooldown;
 
 
@@ -398,8 +381,11 @@ namespace ShootingStar_1YA_CHSU
 
                 if (wert.jump_cooldown > 0)
                 {
-                    InitializePlayerMovement(gamefield, player, 1);
-                    wert.jump_cooldown--;
+                    if (wert.jump_cooldown % 5 == 0)
+                    {
+                        InitializePlayerMovement(gamefield, player, 1);
+                    }
+                    wert.jump_cooldown-=1;
 
                 }
 
