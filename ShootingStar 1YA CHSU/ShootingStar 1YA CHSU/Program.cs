@@ -176,6 +176,7 @@ namespace ShootingStar_1YA_CHSU
                             {
                                 Points++;
                             }
+                            // Komentar
 
                            
 
