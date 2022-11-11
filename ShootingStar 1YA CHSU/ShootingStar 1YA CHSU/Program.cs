@@ -58,10 +58,10 @@ namespace ShootingStar_1YA_CHSU
         class Gegner
         {
 
-            public int[] enemyPos_4 = new int[2] { 4, 39 };
-            public int[] enemyPos_5 = new int[2] { 5, 39 };
+            public int[] enemyPos_4 = new int[2] { 0, 3 };
+            public int[] enemyPos_5 = new int[2] { 1, 3 };
 
-            public int enemy_ID;
+            
         }
 
         class Werte
@@ -352,27 +352,42 @@ namespace ShootingStar_1YA_CHSU
 
             if (wert.gameTicks == wert.Takt * 5)
             {
-
-                gamefield[enemyTypeLow.enemyPos_5[0], enemyTypeLow.enemyPos_5[1]].bEnemyType_Low = false;
-                gamefield[enemyTypeLow.enemyPos_4[0], enemyTypeLow.enemyPos_4[1]].bEnemyType_Low = false;
-
-                enemyTypeLow.enemyPos_5[1]--;
-                enemyTypeLow.enemyPos_4[1]--;
-
-                gamefield[enemyTypeLow.enemyPos_5[0], enemyTypeLow.enemyPos_5[1]].bEnemyType_Low = true;
-                gamefield[enemyTypeLow.enemyPos_4[0], enemyTypeLow.enemyPos_4[1]].bEnemyType_Low = true;
-
-                wert.gameTicks = wert.Takt;
-
-                // Delete Enemy and Restore at beginning
-                if (enemyTypeLow.enemyPos_5[1] == 1 || enemyTypeLow.enemyPos_4[1] == 1)
+                if (enemyTypeLow.enemyPos_4[1] > 0 || enemyTypeLow.enemyPos_5[1] > 0)
                 {
                     gamefield[enemyTypeLow.enemyPos_5[0], enemyTypeLow.enemyPos_5[1]].bEnemyType_Low = false;
                     gamefield[enemyTypeLow.enemyPos_4[0], enemyTypeLow.enemyPos_4[1]].bEnemyType_Low = false;
 
-                    enemyTypeLow = null;
-                    enemyTypeLow = new Gegner();
+                    enemyTypeLow.enemyPos_5[1]--;
+                    enemyTypeLow.enemyPos_4[1]--;
+
+                    gamefield[enemyTypeLow.enemyPos_5[0], enemyTypeLow.enemyPos_5[1]].bEnemyType_Low = true;
+                    gamefield[enemyTypeLow.enemyPos_4[0], enemyTypeLow.enemyPos_4[1]].bEnemyType_Low = true;
                 }
+                    wert.gameTicks = wert.Takt;
+
+                    // Delete Enemy and Restore at beginning
+                    if (enemyTypeLow.enemyPos_5[1] == 1 || enemyTypeLow.enemyPos_4[1] == 1)
+                    {
+
+                    while (true)
+                    {
+                        gamefield[enemyTypeLow.enemyPos_5[0], enemyTypeLow.enemyPos_5[1]].bEnemyType_Low = false;
+                        gamefield[enemyTypeLow.enemyPos_4[0], enemyTypeLow.enemyPos_4[1]].bEnemyType_Low = false;
+
+                        gamefield[0, 1].bEnemyType_Low = true;
+                        gamefield[enemyTypeLow.enemyPos_4[0], enemyTypeLow.enemyPos_4[1]].bEnemyType_Low = true;
+
+                        enemyTypeLow = null;
+                        enemyTypeLow = new Gegner();
+
+                        gamefield[enemyTypeLow.enemyPos_5[0], enemyTypeLow.enemyPos_5[1]].bEnemyType_Low = true;
+                        gamefield[enemyTypeLow.enemyPos_4[0], enemyTypeLow.enemyPos_4[1]].bEnemyType_Low = true;
+
+                        Console.Clear(); DisplayGame(gamefield, player, enemyTypeLow, wert);
+
+                    }
+                    }
+                
 
 
 
