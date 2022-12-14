@@ -98,7 +98,7 @@ namespace ShootingStar_1YA_CHSU
             for (int i = 0; i < wert.max_enemys; i++)
             {
                 enemyTypeLow[i] = new Gegner();
-                enemyTypeLow[i].enemy_ID = i;
+                
             }
 
             // Klasse Spieler
