@@ -18,6 +18,8 @@ namespace Employee_Manager
         private ushort _UsedHolidays;
         private DateTime _Birthdate;
 
+
+
         // Konstruktor
         public Employee()
         {
@@ -31,7 +33,18 @@ namespace Employee_Manager
 
         }
 
-      
+      public static bool operator == (Employee a , Employee b)
+        {
+
+            return a._FirstName == b._FirstName && a._LastName == b._LastName && a._Birthdate == b._Birthdate;
+        }
+
+        public static bool operator !=(Employee a, Employee b)
+        {
+
+            return !(a == b);
+        }
+
         // Zuweisung - Get Variablen
         public ushort Get_EmployeeID()
         {

@@ -17,7 +17,16 @@ namespace Employee_Manager
         //Mitarbeiter Hinzufügen
         public void AddEmployee(Employee e)
         {
+            foreach (Employee em in Manager)
+            {
+                if (em == e)
+                {
+                    Console.WriteLine("Duplicate");
+                    return;
+                }
+            }
             Manager.Add(e);
+
 
         }
 
