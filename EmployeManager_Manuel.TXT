@@ -1,0 +1,119 @@
+Aufgabe: Schreiben Sie eine Kontakte-App
+
+Führen Sie folgende Schritte aus:
+
+1) Erstellen Sie ein neues C# Konsolenanwendung Projekt, benennen Sie dieses "MeinAdressbuch" oder "ContactsApp" (oder ähnlich).
+
+2) Benennen Sie die Datei "Program.cs" um in "MeinAdressbuch.cs"
+
+3) Fügen Sie folgende neue Dateien/Klassen hinzu:
+    - Person.cs
+    - Personen.cs
+    - Adressbuch.cs
+Der Ablauf soll grob so funktionieren:
+In Person sind die Felder der einzelenen Personen gespeichert (Vorname, Nachname, etc)
+In Personen gibt es eine Liste von einzelnen Personen die während der Laufzeit verändert werden kann.
+Personen stellt Methoden bereit um auf die Liste zuzugreifen.
+Adressbuch beinhält das Menü und greift auf die öffentlichen Methoden der Personen zu
+MeinAdressbuch ist nur der Einstiegspunkt des Programmes, dort wird direkt mit Adressbuch weiter gearbeitet.
+
+4) Achten Sie darauf, dass jede dieser Dateien/Klassen den selben "namespace" verwendet
+
+5) Beginnen Sie mit der "Person" Klasse und fügen Sie folgende Properties hinzu:
+    public string Vorname {get; set;}
+    public string Nachname {get; set;}
+    public string Geburtsdatum {get; set;}
+    public string Adresse {get; set;}
+    public string Postleitzahl {get; set;}
+    public string Telefonnummer {get; set;}
+Fügen Sie außerdem einen Konstruktor hinzu:
+    public Person()
+    und initialisieren Sie dort alle Variablen als leeren String
+    zb: Vorname = "";
+Da dies eine reine Datenklasse ist, müssen Sie hier vorerst nichts weiter tun
+
+6) In der "Personen" Klasse, fügen Sie folgendes hinzu:
+    private List<Person> personen - diese wird alle Personen beinhalten
+    Einen Konstruktor: public Personen()
+    Im Konstruktor initialisieren Sie die Liste (personen = new List<Person>();)
+Zusätzlich benötigen Sie in dieser Klasse öffentliche Methoden, um Elemente in die private Liste hinzufügen, suchen, löschen etc. zu können.
+Das heißt, fügen Sie die entsprechenden Methoden hinzu, etwa nach dem Schema:
+public void AddPerson(Person p) oder public void RemovePerson(Person p)
+In diesen Methoden, müssen Sie die entsprechenden Funktionen auf die Liste anwenden. 
+Also in der AddPerson Methode zB personen.Add(p) oder in der RemovePerson zB personen.Remove(p) aufrufen.
+Die Klasse stellt also öffentliche Methoden bereit um die private Liste zu bearbeiten.
+
+7) Nun kommt die Benutzerschnittstelle:
+In der Datei "Adressbuch", fügen Sie eine private Variable vom Typ "Personen" hinzu. 
+Diese hat nun Zugriff auf alle öffentlichen Methoden, die Sie im Schritt 6 erstellt haben und beinhält somit gekapselt alle Benutzer.
+private Personen personen;
+Dann erstellen Sie eine öffentliche "Start" Methode:
+public void Start()
+
+8) Bevor Sie hier weiter machen, empfehle ich Ihnen noch die letzte Datei fertig zu stellen, da diese relativ klein ist.
+In der "MeinAdressbuch.cs" Datei, soll der Einstiegspunkt des Programmes sein, das heißt, hier befindet sich die Main Methode!
+public static void Main()
+In der Main Methode soll:
+Eine Instanz der Klasse Adressbuch erstellt werden
+Adressbuch meinAdressbuch = new Adressbuch();
+Danach soll der User begrüßt werden (Console.WriteLine())
+Anschließend soll die Start Methode vom Adressbuch aufgerufen werden
+meinAdressbuch.Start();
+Abschließend soll der Benutzer verabschiedet werden (Console.WriteLine())
+Mehr muss hier nicht gemacht werden
+
+9) Schlussendlich kümmern Sie sich um den Hauptteil des Programmes, nämlich dem Einlesen der Adressbuch Datei und der Anzeige des Menüs
+Zurück in der Start Methode in der Datei Adressbuch, fügen Sie folgende Funktionalitäten hinzu:
+
+1. Der User soll aufgefordert werden (Console.WriteLine()) einen relativen Pfad zu einer Kontakte-Datei anzugeben (Console.ReadLine()), welche die Personendaten enthält.
+    Ich empfehle Ihnen im Ordner des Projekts + \bin\Debug\net6.0\ eine solche Datei anzulegen (MeinAdressbuch.txt oder ähnlich)
+2. Wenn der User die Eingabe bestätigt, soll die Datei eingelesen werden.
+    Verwenden Sie hierzu Befehle wie "File.Exists" um zu prüfen ob die Datei existiert bzw. "File.ReadAllLines(string path)" um die Datei in ein string[] Array einzulesen.
+    Sollte die Datei nicht existieren oder nicht gelesen werden können, soll der User eine Fehlermeldung bekommen (try/catch)
+3. Wenn die Datei erfolgreich gelesen werden konnte, haben Sie in Ihrem string[] Array die einzelnen Benutzer Datensätze.
+    Diese müssen nun in die Liste<Person> personen übertragen werden.
+    Verwenden Sie dazu eine Methode mit einer Schleife, die das string[] Array durchgeht und jeden Datensatz mit der "string.Split" Methode bei dem Zeichen ; Zeichen trennt und in eine Variable vom Typ Person speichert.
+    Diese können dann der Liste hinzugefügt werden.
+    Pro Zeile befindet sich in der Textdatei 1 Datensatz, getrennt durch ; (Beispiel: Max;Mustermann;01.01.2000;Musterplatz 1;1230;0699123456789)
+    Lesen Sie die gesamte Datei auf EIN MAL ein und arbeiten Sie ab dann mit der Liste. Jedes mal Daten aus der Datei zu lesen bzw. in sie zu schreiben bringt Performance einbußen.
+
+3. Danach sollen, in einer Endlosschleife (while(true) oder ähnlich) Informationen aus- und eingegeben werden können, sodass Sie mehrere Personen nacheinander bearbeiten können.
+Die Aus/Eingabe soll lauten:
+    3.1 In der obersten Zeile soll die Anzahl der aktuell in der Liste befindlichen Datensätze stehen (dazu benötigen Sie eine public Methode "GetCount" in der Personen Klasse, welche personen.Count returned)
+    3.2 Danach kommt ein Menü, mit folgenden Auswahlmöglichkeiten:
+        H ... Hinzufügen: Wenn diese Option ausgewählt wird sollen alle Parameter (Vorname, Nachname etc) einer neuen Person eingegeben werden können und das Ergebnis in die Liste hinzugefügt werden.
+                            Hierzu müssen Sie die zuvor in der Personen Klasse geschriebenen, öffentlichen Methoden aufrufen.
+                            Prüfen Sie, ob das Geburtsdatum valide ist.
+                            Hier gibt es Extra Punkte zu holen, siehe Extra 1*
+        S ... Suchen: Der Benutzer soll eine Eingabe tätigen können, nach dieser Eingabe werden alle Felder von allen Benutzern durchsucht. 
+                        Wenn es eine Übereinstimmung gibt, werden die Daten der Person angezeigt. Falls keine Personen gefunden wurden, soll eine entsprechende Meldung erscheinen.
+        A ... Alle: Listet alle Daten aller Personen auf
+        L ... Löschen: Wie bei Suchen, wenn eine Person gefunden, diese löschen. Wenn mehrere gefunden, Auswahl anbieten und entsprechend ausgewählte Person löschen.         
+        X ... Speichern: Alle Personen in der privaten Liste in die Datei zurück speichern.
+                        Benutzen Sie die "File.WriteAllText" Methode.
+                        Hier gibt es Extra Punkte zu holen, siehe Extra 2**
+        C ... Beenden: Das Programm (bzw. die Endlosschleife) soll beendet werden
+        B ... Bearbeiten: Hier gibt es Extra Punkte zu holen, siehe Extra 3***
+
+    Jede dieser Funktionen soll eine Methode in der Adressbuch Datei aufrufen, damit der Code besser gekapselt ist.
+    Zwischen den einzelnen Menü-Operationen hilft Ihnen die Methode Console.Clear() um den Bildschirminhalt zu löschen.
+
+
+*Extra 1:
+Fügen Sie in die Datei Person.cs eine Operatorüberladung hinzu, für den == und den != Operator.
+Dieser soll 2 Personen als Parameter bekommen und prüfen ob alle Properties ident sind.
+Falls ja, handelt es sich um ein duplikat.
+In diesem Fall soll bei der "H" Funktion (Hinzufügen) eine Meldung kommen und der Datensatz soll nicht hinzugefügt werden
+
+**Extra 2:
+Beim speichern bzw. lesen der Datei, verschlüsseln Sie die Datensätze, zB mit einer Base64 Encryption.
+Eine Anleitung dazu finden sie in Google.
+
+***Extra 3:
+Mit der Taste B, soll ein Benutzer bearbeitet werden können. Dies ist eine Kombination aus Suchen, Löschen und Hinzufügen.
+Der User soll eine Eingabe tätigen, anhand dieser wird die Suchen Funktion angewandt.
+Falls keine Person gefunden wurde, Meldung. Falls eine Person gefunden wurde, diese nehmen. Falls mehrere gefunden wurden, Liste mit Auswahl.
+Die ausgewählte Person soll gelöscht werden.
+Danach sollen sämtliche Daten neu eingegeben werden können.
+ACHTUNG: Hierbei sollen die zuvor verhandenen Daten als Vorschläge vorausgefüllt sein, sodass man mit "Enter" diese übernehmen kann
+Am Ende wird die neue Person der Liste hinzugefügt.
