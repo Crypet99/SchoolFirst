@@ -31,8 +31,8 @@ namespace Employee_Manager
 
         }
 
-    
-      public static bool operator == (Employee a , Employee b)
+        //Operator Überladung Vergleichen von 2 Mitarbeitern
+        public static bool operator ==(Employee a, Employee b)
         {
 
             return a._FirstName == b._FirstName && a._LastName == b._LastName && a._Birthdate == b._Birthdate;
@@ -43,6 +43,9 @@ namespace Employee_Manager
             return a._FirstName != b._FirstName && a._LastName != b._LastName && a._Birthdate != b._Birthdate;
 
         }
+
+        #region Setting / Getting Permissions
+
 
         // Zuweisung - Get Variablen
         public ushort Get_EmployeeID()
@@ -115,7 +118,7 @@ namespace Employee_Manager
         {
             _Birthdate = value;
         }
-
+        #endregion
 
 
 

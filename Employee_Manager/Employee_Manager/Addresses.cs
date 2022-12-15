@@ -10,7 +10,7 @@ namespace Employee_Manager
 {
     internal class Addresses
     {
-
+        #region Setting EmployeValues
         // Setze Eigenschaften zur Person
         public Employee settingValues(ushort PersonnelNumber, string optionial = "")
         {
@@ -137,6 +137,7 @@ namespace Employee_Manager
             else
                 return 30;
         }
+        #endregion
     }
 
 

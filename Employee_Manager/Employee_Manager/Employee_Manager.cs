@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +18,9 @@ namespace Employee_Manager
         private List<Employee> Manager = new List<Employee>();
 
 
-        //Mitarbeiter Hinzufügen
+        #region Employees
+
+        // Mitarbeiter Hinzufügen
         public void AddEmployee(Employee e)
         {
             foreach (Employee em in Manager)
@@ -191,38 +195,9 @@ namespace Employee_Manager
             Console.WriteLine();
         }
 
-        //Kontakte aus TXT Datei Auslesen
-        public ushort ReadContacts(string Path, ushort Personnelnumber)
-        {
-            string[] contacts;
-            if (File.Exists(Path))
-            {
-
-                Addresses addresses = new Addresses();
-                contacts = File.ReadAllLines(Path);
-
-                for (int i = 0; i < contacts.Length; i++)
-                {
-
-                    Employee employee = new Employee();
-                    string[] con = contacts[i].Split(';');
-                    employee.Set_EmployeeID(Personnelnumber);
-                    employee.SET_FirstName(con[0]);
-                    employee.SET_LastName(con[1]);
-                    employee.Set_Birthdate(Convert.ToDateTime(con[2]));
-                    employee.Set_Age(addresses.SetAge(employee, Convert.ToDateTime(con[2])));
-                    employee.Set_HolidaysAvailable(addresses.SetHolidays(employee, Convert.ToDateTime(con[2])));
-                    AddEmployee(employee);
-
-                    Personnelnumber++;
-                }
-                return Personnelnumber;
-
-            }
-            return 0;
-        }
-
-        //Urlaub Beantragen
+        #endregion
+        
+        #region Holidays
         public void HolidayOff()
         {
             Employee e = SearchEmployee();
@@ -269,7 +244,6 @@ namespace Employee_Manager
             }
 
         }
-
         private bool ValidHoliday(DateTime holidayBegin, DateTime holidayEnd, Employee e)
         {
             int holiDays = holidayEnd.Subtract(holidayBegin).Days;
@@ -280,6 +254,134 @@ namespace Employee_Manager
             return true;
 
         }
+        #endregion
+
+        #region Save and Read Contacts  
+        public void saveData(string path)
+        {
+            try
+            {
+
+
+
+
+                if (path != null || path != "")
+                {
+                    string[] saveData = new string[Manager.Count];
+
+
+                    int index = 0;
+
+                    foreach (Employee e in Manager)
+                    {
+                        if (index <= Manager.Count)
+                        {
+
+                            saveData[index] = e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToLongDateString() + ":";
+                            index++;
+
+                        }
+                    }
+
+                    string EncodedData = string.Join(Environment.NewLine, saveData);
+                    byte[] bytes = Encoding.UTF8.GetBytes(EncodedData);
+                    string CodedData = Convert.ToBase64String(bytes);
+
+                    if (CodedData == "" || CodedData == null) { return; }
+
+                    using (StreamWriter writer = new StreamWriter(path))
+                    {
+                        writer.Write(CodedData);
+                    };
+
+
+
+
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+        }
+        public ushort GetSavedContacts(string Path, ushort PersonnelNumber)
+        {
+
+            if (File.Exists(Path))
+            {
+                //"C:\\Users\\labor\\Desktop\\chsu\\SchoolFirst\\Contacts.TXT"
+                string Base64Data = File.ReadAllText(Path);
+                if (Base64Data != "" || Base64Data.Length != 0)
+                {
+                    byte[] Base64bytes = Convert.FromBase64String(Base64Data);
+                    string Datastring = Encoding.UTF8.GetString(Base64bytes);
+                    string[] Dataarray = Datastring.Split(':');
+
+
+
+
+
+                    Addresses addresses = new Addresses();
+
+                    if (Dataarray.Length > 0)
+                    {
+                        for (int i = 0; i < Dataarray.Length - 1; i++)
+                        {
+
+                            Employee employee = new Employee();
+                            string[] con = Dataarray[i].Split(';');
+                            employee.Set_EmployeeID(PersonnelNumber);
+                            employee.SET_FirstName(con[0]);
+                            employee.SET_LastName(con[1]);
+                            employee.Set_Birthdate(Convert.ToDateTime(con[2]));
+                            employee.Set_Age(addresses.SetAge(employee, Convert.ToDateTime(con[2])));
+                            employee.Set_HolidaysAvailable(addresses.SetHolidays(employee, Convert.ToDateTime(con[2])));
+                            AddEmployee(employee);
+
+                            PersonnelNumber++;
+                        }
+                    }
+                }
+                return PersonnelNumber;
+
+
+            }
+            return PersonnelNumber;
+
+
+
+        }
+
+        public ushort ReadContacts(string Path, ushort Personnelnumber)
+        {
+            string[] contacts;
+
+            if (File.Exists(Path))
+            {
+
+                Addresses addresses = new Addresses();
+                contacts = File.ReadAllLines(Path);
+
+                for (int i = 0; i < contacts.Length; i++)
+                {
+
+                    Employee employee = new Employee();
+                    string[] con = contacts[i].Split(';');
+                    employee.Set_EmployeeID(Personnelnumber);
+                    employee.SET_FirstName(con[0]);
+                    employee.SET_LastName(con[1]);
+                    employee.Set_Birthdate(Convert.ToDateTime(con[2]));
+                    employee.Set_Age(addresses.SetAge(employee, Convert.ToDateTime(con[2])));
+                    employee.Set_HolidaysAvailable(addresses.SetHolidays(employee, Convert.ToDateTime(con[2])));
+                    AddEmployee(employee);
+
+                    Personnelnumber++;
+                }
+                return Personnelnumber;
+
+            }
+            return 0;
+        }
+
+        #endregion
+
 
 
 
