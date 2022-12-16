@@ -40,6 +40,7 @@ namespace Employee_Manager
         // Suche Mitarbeiter
         public Employee SearchEmployee()
         {
+            Console.ForegroundColor= ConsoleColor.Red;
             Console.Clear();
             char select = ' ';
 
@@ -55,6 +56,7 @@ namespace Employee_Manager
                     {
                         Console.WriteLine("Bitte den Namen der Person eingeben ");
                         string searchValue = Console.ReadLine();
+                        Console.Clear();
                         foreach (Employee em in Manager)
                         {
                             if (em.Get_LastName() == searchValue || em.Get_FirstName() == searchValue)
@@ -74,6 +76,7 @@ namespace Employee_Manager
                     {
                         Console.WriteLine("Bitte die Personalnummer des Mitarbeiters eingeben : ");
                         string searchValue = Console.ReadLine();
+                        Console.Clear();
                         if (addresses.IsNumeric(searchValue) || searchValue != "")
                         {
                             foreach (Employee em in Manager)
@@ -99,6 +102,7 @@ namespace Employee_Manager
                         {
                             Console.WriteLine("Bitte das Geburtsdatum des Mitarbeiters eingeben : ");
                             DateTime searchValue = Convert.ToDateTime(Console.ReadLine());
+                            Console.Clear();
 
                             foreach (Employee em in Manager)
                             {
@@ -183,20 +187,21 @@ namespace Employee_Manager
         // Gib den Mitarbeiter aus
         private void ShowEmployee(Employee e)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Mitarbeiternummer : " + e.Get_EmployeeID());
             Console.WriteLine("Mitarbeitername : " + e.Get_FirstName() + " " + e.Get_LastName());
             Console.WriteLine("Geburtsdatum : " + e.Get_Birthdate().ToLongDateString());
             Console.WriteLine("Alter : " + e.Get_Age());
             Console.WriteLine("Anzahl Freier Urlaubstage : " + e.Get_HolidaysAvailable());
             Console.WriteLine("Anzahl Verbrauchter Urlaubstage : " + e.Get_UsedHolidays());
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("---------------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine();
         }
 
         #endregion
-        
+
         #region Holidays
         public void HolidayOff()
         {
@@ -209,7 +214,7 @@ namespace Employee_Manager
 
                 do
                 {
-                    System.Threading.Thread.Sleep(1000);
+                    Thread.Sleep(1000);
                     Console.Clear();
                     ShowEmployee(e);
                     holidaybegin = addresses.SetSpecificDate("Wann soll ihr Urlaub Beginnen ?");
@@ -248,7 +253,7 @@ namespace Employee_Manager
         {
             int holiDays = holidayEnd.Subtract(holidayBegin).Days;
 
-            System.Threading.Thread.Sleep(1);
+           
             if (holidayBegin < DateTime.Now || holidayEnd < DateTime.Now) { Console.WriteLine("Der Urlaub kann nicht rückwirkend beantragt werden."); return false; }
             if (e.Get_HolidaysAvailable() - holiDays < 0) { Console.WriteLine("Zu wenig Urlaubstage Verfügbar."); return false; }
             return true;
@@ -261,37 +266,30 @@ namespace Employee_Manager
         {
             try
             {
-
-
-
-
                 if (path != null || path != "")
                 {
-                    string[] saveData = new string[Manager.Count];
 
-
-                    int index = 0;
-
+                    StringBuilder sb = new StringBuilder();
                     foreach (Employee e in Manager)
                     {
-                        if (index <= Manager.Count)
-                        {
 
-                            saveData[index] = e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToLongDateString() + ":";
-                            index++;
 
-                        }
+
+                        //saveData[index] = e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToLongDateString() + ":"; 
+                        sb.Append(e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToShortDateString() + Environment.NewLine);
+                        //  index++;
+
+
                     }
-
-                    string EncodedData = string.Join(Environment.NewLine, saveData);
-                    byte[] bytes = Encoding.UTF8.GetBytes(EncodedData);
+                    string EncodeData = sb.ToString();
+                    byte[] bytes = Encoding.UTF8.GetBytes(EncodeData);
                     string CodedData = Convert.ToBase64String(bytes);
 
                     if (CodedData == "" || CodedData == null) { return; }
 
                     using (StreamWriter writer = new StreamWriter(path))
                     {
-                        writer.Write(CodedData);
+                        writer.WriteLine(CodedData);
                     };
 
 
@@ -301,43 +299,37 @@ namespace Employee_Manager
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        public ushort GetSavedContacts(string Path, ushort PersonnelNumber)
+        public ushort ReadContacts(string Path, ushort PersonnelNumber)
         {
 
             if (File.Exists(Path))
             {
-                //"C:\\Users\\labor\\Desktop\\chsu\\SchoolFirst\\Contacts.TXT"
+
                 string Base64Data = File.ReadAllText(Path);
                 if (Base64Data != "" || Base64Data.Length != 0)
                 {
-                    byte[] Base64bytes = Convert.FromBase64String(Base64Data);
-                    string Datastring = Encoding.UTF8.GetString(Base64bytes);
-                    string[] Dataarray = Datastring.Split(':');
-
-
-
-
-
                     Addresses addresses = new Addresses();
 
-                    if (Dataarray.Length > 0)
+                    byte[] Base64bytes = Convert.FromBase64String(Base64Data);
+                    string Datastring = Encoding.UTF8.GetString(Base64bytes);
+                    string[] Dataarray = Datastring.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
+                    
+                    for (int i = 0; i < Dataarray.Length; i++)
                     {
-                        for (int i = 0; i < Dataarray.Length - 1; i++)
-                        {
 
-                            Employee employee = new Employee();
-                            string[] con = Dataarray[i].Split(';');
-                            employee.Set_EmployeeID(PersonnelNumber);
-                            employee.SET_FirstName(con[0]);
-                            employee.SET_LastName(con[1]);
-                            employee.Set_Birthdate(Convert.ToDateTime(con[2]));
-                            employee.Set_Age(addresses.SetAge(employee, Convert.ToDateTime(con[2])));
-                            employee.Set_HolidaysAvailable(addresses.SetHolidays(employee, Convert.ToDateTime(con[2])));
-                            AddEmployee(employee);
+                        Employee employee = new Employee();
+                        string[] con = Dataarray[i].Split(';');
+                        employee.Set_EmployeeID(PersonnelNumber);
+                        employee.SET_FirstName(con[0]);
+                        employee.SET_LastName(con[1]);
+                        employee.Set_Birthdate(Convert.ToDateTime(con[2]));
+                        employee.Set_Age(addresses.SetAge(employee, Convert.ToDateTime(con[2])));
+                        employee.Set_HolidaysAvailable(addresses.SetHolidays(employee, Convert.ToDateTime(con[2])));
+                        AddEmployee(employee);
 
-                            PersonnelNumber++;
-                        }
+                        PersonnelNumber++;
                     }
+
                 }
                 return PersonnelNumber;
 
@@ -347,37 +339,6 @@ namespace Employee_Manager
 
 
 
-        }
-
-        public ushort ReadContacts(string Path, ushort Personnelnumber)
-        {
-            string[] contacts;
-
-            if (File.Exists(Path))
-            {
-
-                Addresses addresses = new Addresses();
-                contacts = File.ReadAllLines(Path);
-
-                for (int i = 0; i < contacts.Length; i++)
-                {
-
-                    Employee employee = new Employee();
-                    string[] con = contacts[i].Split(';');
-                    employee.Set_EmployeeID(Personnelnumber);
-                    employee.SET_FirstName(con[0]);
-                    employee.SET_LastName(con[1]);
-                    employee.Set_Birthdate(Convert.ToDateTime(con[2]));
-                    employee.Set_Age(addresses.SetAge(employee, Convert.ToDateTime(con[2])));
-                    employee.Set_HolidaysAvailable(addresses.SetHolidays(employee, Convert.ToDateTime(con[2])));
-                    AddEmployee(employee);
-
-                    Personnelnumber++;
-                }
-                return Personnelnumber;
-
-            }
-            return 0;
         }
 
         #endregion

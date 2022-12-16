@@ -20,12 +20,12 @@ namespace Employee_Manager
             // Instanzen erstellen
             Employee_Manager employee_Manager = new Employee_Manager();
             Addresses addresses = new Addresses();
-        
+
             //Personalnummer
             ushort PersonnelNumber = 0;
-            const string path = "C:\\Users\\labor\\Desktop\\chsu\\SchoolFirst\\Contacts.TXT";
+            string path = "C:\\Users\\Student\\Desktop\\chsu\\SchoolFirst\\Contacts.TXT";
 
-            PersonnelNumber =  employee_Manager.GetSavedContacts(path, PersonnelNumber);
+            PersonnelNumber = employee_Manager.ReadContacts(path, PersonnelNumber);
             Console.Clear();
 
 
@@ -34,11 +34,8 @@ namespace Employee_Manager
             // Programm Ablauf
             do
             {
-                Console.WriteLine("H.Neuen Mitarbeiter Hinzufügen\n" + "L.Mitarbeiter Löschen\n" + "S.Mitarbeiter Suchen\n" + "A.Alle Datensätze anzeigen\n" +
-                   "U.Urlaub Beantragen\n" + "K.Kontakte aus Datei Hinzufügen\nE.Speichern Einleiten \nO.Neuer Speicherort (In Arbeit)\n" + "B.Beenden");
-                switch_Menue = Console.ReadKey().KeyChar;
-                Console.Clear();
 
+                switch_Menue = ShowMenue();
 
                 switch (switch_Menue)
                 {
@@ -85,40 +82,31 @@ namespace Employee_Manager
                             employee_Manager.HolidayOff();
                         }
                         break;
-                    // Vorhandene Daten Einlesen
+                    //Speichern
                     case 'K':
                     case 'k':
                         {
-
-                            {
-
-                                string Path = Console.ReadLine();
-                                Console.Clear();
-                                PersonnelNumber = employee_Manager.GetSavedContacts(path, PersonnelNumber);
-
-
-                            }
+                                employee_Manager.saveData(path);
                         }
                         break;
 
                     case 'E':
                     case 'e':
                         {
-                            employee_Manager.saveData(path);
+                            Console.WriteLine("Einstellungen");
+                            Console.WriteLine("----------------");
+                            Console.WriteLine("Pfad für die DateiSpeicherung auswählen");
+                            path = Console.ReadLine();
                         }
                         break;
 
-                    case 'O':
-                    case 'o':
-                        {
-                            Console.WriteLine("Speicerort einfügen");
-                        }break;
-
+                    // Beenden
                     case 'B':
                     case 'b':
                         {
 
-                        }break;
+                        }
+                        break;
 
                     default:
                         Console.WriteLine("Ungültige Eingabe");
@@ -132,6 +120,22 @@ namespace Employee_Manager
 
             } while (switch_Menue != 'b' && switch_Menue != 'B');
 
+        }
+
+        private char ShowMenue()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\t\teManager");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("------------------------------------------------------");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("H.Neuer Mitarbeiter\t"+"A.Alle Datensätze anzeigen\n" +
+                               "L.Mitarbeiter Löschen\t"+"E.Einstellungen\n" +
+                               "S.Mitarbeiter Suchen\t"+"K.Speichern\n" +
+                               "U.Urlaub Eintragen\t"+"Programm Beenden\n");
+            switch_Menue = Console.ReadKey().KeyChar;
+            Console.Clear();
+            return switch_Menue;
         }
 
 

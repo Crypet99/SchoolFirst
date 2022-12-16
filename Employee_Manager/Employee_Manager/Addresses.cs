@@ -16,8 +16,6 @@ namespace Employee_Manager
         {
             Employee employee = new Employee();
 
-
-
             employee.Set_EmployeeID(PersonnelNumber);
             employee.SET_FirstName(Setname("Vornamen"));
             employee.SET_LastName(Setname("Nachnamen"));
@@ -93,7 +91,7 @@ namespace Employee_Manager
 
         private bool ValidBirth(DateTime Birthdate)
         {
-            if (Birthdate.Year <= 1900 || (Birthdate.Month > DateTime.Now.Month && Birthdate.Year >= DateTime.Now.Year)) { Console.WriteLine("Alter ist nicht Pausible."); return false; }
+            if (Birthdate.Year <= 1900 || (Birthdate > DateTime.Now)) { Console.WriteLine("Alter ist nicht Pausible."); return false; }
             return true;
         }
 
