@@ -15,6 +15,7 @@ namespace Employee_Manager
     {
         Employee employee = new Employee();
         Addresses addresses = new Addresses();
+        Dienstplan Timeplan = new Dienstplan();
         private List<Employee> Manager = new List<Employee>();
 
 
@@ -275,9 +276,13 @@ namespace Employee_Manager
 
 
 
-                        //saveData[index] = e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToLongDateString() + ":"; 
-                        sb.Append(e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToShortDateString() + Environment.NewLine);
-                        //  index++;
+                  
+                        sb.Append(e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToShortDateString() + ";");
+                        for(int i = 0; i < e._Workdays.Length;i++)
+                        {
+                            if (e._Workdays[i].Year > 2000) { sb.Append(e._Workdays[i].ToShortDateString() + ";"); }
+                        }
+                        sb.Append(Environment.NewLine);
 
 
                     }
@@ -316,7 +321,7 @@ namespace Employee_Manager
                     
                     for (int i = 0; i < Dataarray.Length; i++)
                     {
-
+                        int temp = 0;
                         Employee employee = new Employee();
                         string[] con = Dataarray[i].Split(';');
                         employee.Set_EmployeeID(PersonnelNumber);
@@ -325,6 +330,12 @@ namespace Employee_Manager
                         employee.Set_Birthdate(Convert.ToDateTime(con[2]));
                         employee.Set_Age(addresses.SetAge(employee, Convert.ToDateTime(con[2])));
                         employee.Set_HolidaysAvailable(addresses.SetHolidays(employee, Convert.ToDateTime(con[2])));
+                        for(int y = 2; y < con.Length-1;y++)
+                        {
+
+                            employee._Workdays[temp] = Convert.ToDateTime(con[y]);
+                            temp++;
+                        }
                         AddEmployee(employee);
 
                         PersonnelNumber++;
@@ -343,8 +354,36 @@ namespace Employee_Manager
 
         #endregion
 
+        #region Timeplan
+       
+        public void TimePlanMenue()
+        {
+            Timeplan.TimePlanMenue(Manager);
+        }
+
+        public void ShowTimePlan()
+        {
+
+            Employee e = SearchEmployee();
+
+            
+
+            for(int i = 0; i < e._Workdays.Length;i++)
+            {
+                if (e._Workdays[i].Year > 2000) { Console.WriteLine("Arbeitstag : " + e._Workdays[i].ToLongDateString()); }
+            }
+
+        }
+
+       
+
+        #endregion
+
 
 
 
     }
 }
+
+
+

@@ -23,7 +23,7 @@ namespace Employee_Manager
 
             //Personalnummer
             ushort PersonnelNumber = 0;
-            string path = "C:\\Users\\Student\\Desktop\\chsu\\SchoolFirst\\Contacts.TXT";
+            string path = "C:\\Users\\Student\\CHSU\\SchoolFirst\\Contacts.TXT";
 
             PersonnelNumber = employee_Manager.ReadContacts(path, PersonnelNumber);
             Console.Clear();
@@ -58,7 +58,7 @@ namespace Employee_Manager
 
                         }
                         break;
-
+                    // Mitarbeiter Löschen
                     case 'L':
                     case 'l':
                         {
@@ -75,28 +75,34 @@ namespace Employee_Manager
                             PersonnelNumber++;
                         }
                         break;
-
+                    // Urlaub Eintragen
                     case 'U':
                     case 'u':
                         {
                             employee_Manager.HolidayOff();
                         }
                         break;
+                    // Dienstplan 
+                    case 'D':
+                    case 'd':
+                        {
+                            employee_Manager.TimePlanMenue();
+
+                        }break;
+                        
                     //Speichern
                     case 'K':
                     case 'k':
                         {
-                                employee_Manager.saveData(path);
+                            employee_Manager.saveData(path);
                         }
                         break;
-
+                    // Einstellungen
                     case 'E':
                     case 'e':
                         {
-                            Console.WriteLine("Einstellungen");
-                            Console.WriteLine("----------------");
-                            Console.WriteLine("Pfad für die DateiSpeicherung auswählen");
-                            path = Console.ReadLine();
+
+                            employee_Manager.ShowTimePlan();
                         }
                         break;
 
@@ -122,6 +128,7 @@ namespace Employee_Manager
 
         }
 
+        // Menue Anzeigen
         private char ShowMenue()
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -129,10 +136,11 @@ namespace Employee_Manager
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("H.Neuer Mitarbeiter\t"+"A.Alle Datensätze anzeigen\n" +
-                               "L.Mitarbeiter Löschen\t"+"E.Einstellungen\n" +
-                               "S.Mitarbeiter Suchen\t"+"K.Speichern\n" +
-                               "U.Urlaub Eintragen\t"+"Programm Beenden\n");
+            Console.WriteLine("H.Neuer Mitarbeiter\t" + "A.Alle Datensätze anzeigen\n" +
+                               "L.Mitarbeiter Löschen\t" + "E.Einstellungen\n" +
+                               "S.Mitarbeiter Suchen\t" + "K.Speichern\n" +
+                               "U.Urlaub Eintragen\t" + "B.Programm Beenden\n" +
+                               "D.Dienstplan Erstellen\t");
             switch_Menue = Console.ReadKey().KeyChar;
             Console.Clear();
             return switch_Menue;

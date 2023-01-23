@@ -91,7 +91,7 @@ namespace Employee_Manager
 
         private bool ValidBirth(DateTime Birthdate)
         {
-            if (Birthdate.Year <= 1900 || (Birthdate > DateTime.Now)) { Console.WriteLine("Alter ist nicht Pausible."); return false; }
+            if (Birthdate.Year <= 1900) { Console.WriteLine("Alter ist nicht Pausible."); return false; }
             return true;
         }
 

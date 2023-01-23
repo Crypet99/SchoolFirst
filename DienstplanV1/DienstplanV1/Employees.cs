@@ -17,7 +17,6 @@ namespace Employee_Manager
         private ushort _HolidaysAvailable;
         private ushort _UsedHolidays;
         private DateTime _Birthdate;
-        public DateTime[] _Workdays = new DateTime[32];
 
         // Konstruktor
         public Employee()
@@ -33,17 +32,7 @@ namespace Employee_Manager
         }
 
         //Operator Überladung Vergleichen von 2 Mitarbeitern
-        public static bool operator ==(Employee a, Employee b)
-        {
-
-            return a._FirstName == b._FirstName && a._LastName == b._LastName && a._Birthdate == b._Birthdate;
-        }
-
-        public static bool operator !=(Employee a, Employee b)
-        {
-            return a._FirstName != b._FirstName && a._LastName != b._LastName && a._Birthdate != b._Birthdate;
-
-        }
+    
 
         #region Setting / Getting Permissions
 
@@ -92,7 +81,7 @@ namespace Employee_Manager
 
         public void SET_FirstName(string value)
         {
-             _FirstName = value;
+            _FirstName = value;
         }
 
         public void SET_LastName(string value)
@@ -107,12 +96,12 @@ namespace Employee_Manager
 
         public void Set_HolidaysAvailable(ushort value)
         {
-             _HolidaysAvailable = value;
+            _HolidaysAvailable = value;
         }
 
-        public void Set_UsedHolidays( ushort value)
+        public void Set_UsedHolidays(ushort value)
         {
-             _UsedHolidays = value;
+            _UsedHolidays = value;
         }
 
         public void Set_Birthdate(DateTime value)
