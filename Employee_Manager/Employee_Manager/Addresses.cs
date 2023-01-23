@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,32 +10,28 @@ namespace Employee_Manager
 {
     internal class Addresses
     {
-        
+        #region Setting EmployeValues
         // Setze Eigenschaften zur Person
-        public Employee settingValues(ushort PersonnelNumber , string optionial = "")
+        public Employee settingValues(ushort PersonnelNumber, string optionial = "")
         {
             Employee employee = new Employee();
 
-          
-                
-                employee.Set_EmployeeID(PersonnelNumber);
-                employee.SET_FirstName(Setname("Vornamen"));
-                employee.SET_LastName(Setname("Nachnamen"));
-                employee.Set_Birthdate(SetBirthday());
-                employee.Set_Age(SetAge(employee));
-                employee.Set_HolidaysAvailable(SetHolidays(employee));
-            
-       
-            
+            employee.Set_EmployeeID(PersonnelNumber);
+            employee.SET_FirstName(Setname("Vornamen"));
+            employee.SET_LastName(Setname("Nachnamen"));
+            employee.Set_Birthdate(SetSpecificDate("Nenne das Geburtsdatum in dem Format 'YYYY.MM.TT oder TT.MM.YYYY': "));
+            employee.Set_Age(SetAge(employee));
+            employee.Set_HolidaysAvailable(SetHolidays(employee));
 
-            return employee; 
+
+            return employee;
         }
 
 
         // Setting Funktionen
-        private string Setname(string template )
+        private string Setname(string template)
         {
-          
+
 
             string value;
             while (true)
@@ -61,9 +59,9 @@ namespace Employee_Manager
                 }
 
             }
-            
+
         }
-        private DateTime SetBirthday()
+        public DateTime SetSpecificDate(string Template)
         {
 
             while (true)
@@ -71,11 +69,11 @@ namespace Employee_Manager
                 try
                 {
                     DateTime Birthdate;
-                    Console.WriteLine("Nenne das Geburtsdatum in dem Format 'YYYY.MM.TT oder TT.MM.YYYY': ");
+                    Console.WriteLine(Template);
                     Birthdate = Convert.ToDateTime(Console.ReadLine());
 
-                    if ((short)Birthdate.Year <= 1900 || (short)Birthdate.Year > DateTime.Now.Year) { continue; }
-                    else { return Birthdate;}
+                    if (!ValidBirth(Birthdate)) { continue; }
+                    else { return Birthdate; }
                 }
 
 
@@ -86,11 +84,18 @@ namespace Employee_Manager
             }
 
         }
-        private bool IsNumeric(string text)
+        public bool IsNumeric(string text)
         {
             return text.All(char.IsNumber);
         }
-        public ushort SetAge(Employee employee , DateTime? optional = null )
+
+        private bool ValidBirth(DateTime Birthdate)
+        {
+            if (Birthdate.Year <= 1900) { Console.WriteLine("Alter ist nicht Pausible."); return false; }
+            return true;
+        }
+
+        public ushort SetAge(Employee employee, DateTime? optional = null)
         {
             DateTime Today = DateTime.Today;
             ushort value;
@@ -105,7 +110,7 @@ namespace Employee_Manager
 
             return value;
         }
-        public ushort SetHolidays(Employee employee , DateTime? optional = null )
+        public ushort SetHolidays(Employee employee, DateTime? optional = null)
         {
             DateTime Check_Age = new DateTime(DateTime.Now.Year, 01, 01);
 
@@ -120,7 +125,7 @@ namespace Employee_Manager
                     return 30;
 
             }
-           
+
 
             if (Check_Age.Subtract(employee.Get_Birthdate()).Days / 365 > 51)
             {
@@ -130,7 +135,8 @@ namespace Employee_Manager
             else
                 return 30;
         }
+        #endregion
     }
 
-   
+
 }
