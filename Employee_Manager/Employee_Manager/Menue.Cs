@@ -103,6 +103,7 @@ namespace Employee_Manager
                         {
 
                             employee_Manager.ShowTimePlan();
+                            
                         }
                         break;
 
@@ -110,7 +111,14 @@ namespace Employee_Manager
                     case 'B':
                     case 'b':
                         {
+                            employee_Manager.ChangeEmployee();
+                        }
+                        break;
 
+                    case 'P':
+                    case 'p':
+                        {
+                            System.Environment.Exit(0);
                         }
                         break;
 
@@ -124,7 +132,7 @@ namespace Employee_Manager
                 Console.ReadKey();
                 Console.Clear();
 
-            } while (switch_Menue != 'b' && switch_Menue != 'B');
+            } while (switch_Menue != 'P' && switch_Menue != 'p');
 
         }
 
@@ -137,10 +145,10 @@ namespace Employee_Manager
             Console.WriteLine("------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("H.Neuer Mitarbeiter\t" + "A.Alle Datensätze anzeigen\n" +
-                               "L.Mitarbeiter Löschen\t" + "E.Einstellungen\n" +
+                               "L.Mitarbeiter Löschen\t" + "E.Arbeitszeiten Anzeigen\n" +
                                "S.Mitarbeiter Suchen\t" + "K.Speichern\n" +
-                               "U.Urlaub Eintragen\t" + "B.Programm Beenden\n" +
-                               "D.Dienstplan Erstellen\t");
+                               "U.Urlaub Eintragen\t" + "P.Programm Beenden\n" +
+                               "D.Dienstplan Erstellen\t" + "B.Mitarbeiter Bearbeiten");
             switch_Menue = Console.ReadKey().KeyChar;
             Console.Clear();
             return switch_Menue;

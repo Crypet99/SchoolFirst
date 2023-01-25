@@ -62,8 +62,13 @@ namespace Employee_Manager
                         {
                             if (em.Get_LastName() == searchValue || em.Get_FirstName() == searchValue)
                             {
+
+                                Employee e = Manager.Contains
+
                                 ShowEmployee(em);
                                 return em;
+
+                                
                             }
 
                         }
@@ -147,7 +152,7 @@ namespace Employee_Manager
                     case 'J':
                         {
                             Manager.Remove(employee);
-                            Console.WriteLine("MMitarbeiter wurde Gelöscht.");
+                            Console.WriteLine("Mitarbeiter wurde Gelöscht.");
                         }
                         break;
 
@@ -238,6 +243,19 @@ namespace Employee_Manager
                     e.Set_HolidaysAvailable((ushort)HolidaysAvailable);
                     e.Set_UsedHolidays((ushort)holidayends.Subtract(holidaybegin).Days);
 
+                    int index = 0;
+
+                    foreach(DateTime d in e._Holidays)
+                    {
+
+                        if(d.Year > 2000 ) { index++; }
+                    }
+                   for(DateTime d1 = holidaybegin; d1 <= holidayends; d1 = d1.AddDays(1))
+                    {
+                        e._Holidays[index] = d1;
+                        index++;
+                    }
+
                 }
 
                 else if (J_N == 'N' || J_N == 'n')
@@ -277,10 +295,16 @@ namespace Employee_Manager
 
 
                   
-                        sb.Append(e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToShortDateString() + ";");
+                        sb.Append(e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToShortDateString() + ";" + e.Get_UsedHolidays() + ";" + e.Get_HolidaysAvailable() + ";");
                         for(int i = 0; i < e._Workdays.Length;i++)
                         {
                             if (e._Workdays[i].Year > 2000) { sb.Append(e._Workdays[i].ToShortDateString() + ";"); }
+                        }
+
+                        sb.Append("split" + ";");
+                        for (int i = 0; i < e._Holidays.Length; i++)
+                        {
+                            if (e._Holidays[i].Year > 2000) { sb.Append(e._Holidays[i].ToShortDateString() + ";"); }
                         }
                         sb.Append(Environment.NewLine);
 
@@ -290,7 +314,7 @@ namespace Employee_Manager
                     byte[] bytes = Encoding.UTF8.GetBytes(EncodeData);
                     string CodedData = Convert.ToBase64String(bytes);
 
-                    if (CodedData == "" || CodedData == null) { return; }
+                   // if (CodedData == "" || CodedData == null) { return; }
 
                     using (StreamWriter writer = new StreamWriter(path))
                     {
@@ -329,12 +353,20 @@ namespace Employee_Manager
                         employee.SET_LastName(con[1]);
                         employee.Set_Birthdate(Convert.ToDateTime(con[2]));
                         employee.Set_Age(addresses.SetAge(employee, Convert.ToDateTime(con[2])));
-                        employee.Set_HolidaysAvailable(addresses.SetHolidays(employee, Convert.ToDateTime(con[2])));
-                        for(int y = 2; y < con.Length-1;y++)
+                        employee.Set_UsedHolidays(Convert.ToUInt16(con[3]));
+                        employee.Set_HolidaysAvailable(Convert.ToUInt16(con[4]));
+                        for(int y = 5; y < con.Length-1;y++)
                         {
-
+                            if (con[y] == "split") { temp = y + 1; break; }
                             employee._Workdays[temp] = Convert.ToDateTime(con[y]);
                             temp++;
+                        }
+                        int temp_2 = 0;
+                        for (int y = temp; y < con.Length - 1; y++)
+                        {
+                         
+                            employee._Holidays[temp_2] = Convert.ToDateTime(con[y]);
+                            temp_2++;
                         }
                         AddEmployee(employee);
 
@@ -363,15 +395,20 @@ namespace Employee_Manager
 
         public void ShowTimePlan()
         {
+            Timeplan.ShowTimePlans(Manager);
+           
 
-            Employee e = SearchEmployee();
+        }
 
-            
+        public void ChangeEmployee()
+        {
+            Employee employee = SearchEmployee();
 
-            for(int i = 0; i < e._Workdays.Length;i++)
-            {
-                if (e._Workdays[i].Year > 2000) { Console.WriteLine("Arbeitstag : " + e._Workdays[i].ToLongDateString()); }
-            }
+            string new_FName = addresses.changeName(employee, "Bitte geben sie einen neuen Vornamen ein : ");
+            string new_LName = addresses.changeName(employee, "Bitte geben sie einen neuen Nachnamen ein : ");
+            if (new_FName != null || new_FName != "") { employee.SET_FirstName(new_FName); }
+            if (new_LName != null && new_LName != "") { employee.SET_LastName(new_LName); }
+
 
         }
 

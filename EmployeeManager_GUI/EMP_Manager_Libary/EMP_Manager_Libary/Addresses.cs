@@ -1,4 +1,5 @@
-﻿using Microsoft.SqlServer.Server;
+﻿using EMP_Manager_Libary;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Employee_Manager
 {
-    internal class Addresses
+    public class Addresses
     {
         #region Setting EmployeValues
         // Setze Eigenschaften zur Person
@@ -31,7 +32,6 @@ namespace Employee_Manager
         // Setting Funktionen
         private string Setname(string template)
         {
-
 
             string value;
             while (true)
@@ -138,7 +138,7 @@ namespace Employee_Manager
 
 
 
-        public string changeName(Employee employee , string optional = "")
+        public string changeName(Employee employee, string optional = "")
         {
             string temp = null;
             Console.WriteLine(optional);
