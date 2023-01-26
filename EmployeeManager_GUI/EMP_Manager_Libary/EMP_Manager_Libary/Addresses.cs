@@ -7,20 +7,20 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Employee_Manager
+namespace EMP_Manager_Libary
 {
     public class Addresses
     {
         #region Setting EmployeValues
         // Setze Eigenschaften zur Person
-        public Employee settingValues(ushort PersonnelNumber, string optionial = "")
+        public Employee settingValues(ushort PersonnelNumber, string optionial = "", string Fvalue = "", string Lvalue = "", DateTime? dvalue = null)
         {
             Employee employee = new Employee();
 
             employee.Set_EmployeeID(PersonnelNumber);
-            employee.SET_FirstName(Setname("Vornamen"));
-            employee.SET_LastName(Setname("Nachnamen"));
-            employee.Set_Birthdate(SetSpecificDate("Nenne das Geburtsdatum in dem Format 'YYYY.MM.TT oder TT.MM.YYYY': "));
+            employee.SET_FirstName(Setname("Vornamen", Fvalue));
+            employee.SET_LastName(Setname("Nachnamen", Lvalue));
+            employee.Set_Birthdate(SetSpecificDate("Nenne das Geburtsdatum in dem Format 'YYYY.MM.TT oder TT.MM.YYYY': ", dvalue));
             employee.Set_Age(SetAge(employee));
             employee.Set_HolidaysAvailable(SetHolidays(employee));
 
@@ -30,69 +30,67 @@ namespace Employee_Manager
 
 
         // Setting Funktionen
-        private string Setname(string template)
+        private string Setname(string template, string value = "")
         {
 
-            string value;
-            while (true)
+
+
+            try
             {
-                try
-                {
-                    Console.WriteLine("Sehr geehrter User bitte geben sie uns den {0} ihres Mitarbeiters :", template);
-                    value = Console.ReadLine();
-                    if (IsNumeric(value))
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Bitte einen Gültigen Namen eingeben");
-                        continue;
 
-                    }
-                    else if (!IsNumeric(value))
-                    {
-                        Console.Clear();
-                        return value;
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    Console.WriteLine(Ex.Message);
-                }
 
+                if (IsNumeric(value))
+                {
+
+                    return "";
+
+                }
+                else if (!IsNumeric(value))
+                {
+                    Console.Clear();
+                    return value;
+                }
             }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+            }
+
+            return value;
 
         }
-        public DateTime SetSpecificDate(string Template)
+        public DateTime SetSpecificDate(string Template, DateTime? value = null)
         {
 
-            while (true)
+
+
+            try
             {
-                try
-                {
-                    DateTime Birthdate;
-                    Console.WriteLine(Template);
-                    Birthdate = Convert.ToDateTime(Console.ReadLine());
 
-                    if (!ValidBirth(Birthdate)) { continue; }
-                    else { return Birthdate; }
-                }
+                Console.WriteLine(Template);
 
 
-                catch (Exception Ex)
-                {
-                    Console.WriteLine(Ex.Message);
-                }
+                return value ?? DateTime.Now;
+
             }
 
+
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.Message);
+            }
+
+            return value ?? DateTime.Now;
         }
         public bool IsNumeric(string text)
         {
             return text.All(char.IsNumber);
         }
-        private bool ValidBirth(DateTime Birthdate)
-        {
-            if (Birthdate.Year <= 1900) { Console.WriteLine("Alter ist nicht Pausible."); return false; }
-            return true;
-        }
+        //  private bool ValidBirth(DateTime Birthdate)
+        // {
+        //    if (Birthdate.Year <= 1900) { Console.WriteLine("Alter ist nicht Pausible."); return false; }
+        //    return true;
+        //  }
         public ushort SetAge(Employee employee, DateTime? optional = null)
         {
             DateTime Today = DateTime.Today;
@@ -137,14 +135,7 @@ namespace Employee_Manager
 
 
 
-
-        public string changeName(Employee employee, string optional = "")
-        {
-            string temp = null;
-            Console.WriteLine(optional);
-            temp = Console.ReadLine();
-            return temp;
-        }
+        
     }
 
 

@@ -2,7 +2,7 @@
 {
 
     using EMP_Manager_Libary;
-    using Employee_Manager;
+ 
 
     internal class EMP_Manager
     {
@@ -12,6 +12,9 @@
         {
            Employee employee= new Employee();
            Addresses addresses= new Addresses();
+           Menue menue= new Menue();
+
+            menue.startProgramm();
            
             
            

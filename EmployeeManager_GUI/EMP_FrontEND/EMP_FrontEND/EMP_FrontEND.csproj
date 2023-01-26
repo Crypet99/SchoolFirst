@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="EMP_Manager_Libary">
+      <HintPath>..\..\EMP_Manager_Libary\EMP_Manager_Libary\bin\Debug\net7.0\EMP_Manager_Libary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -11,7 +11,7 @@
     // Person Mit allen Variablen und ZugriffsMethoden
     public class Employee
     {
-        private ushort _EmployeeID;
+        public ushort _EmployeeID;
         private string _FirstName;
         private string _LastName;
         private ushort _Age;

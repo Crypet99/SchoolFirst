@@ -1,0 +1,36 @@
+﻿<Window x:Class="EMP_FrontEND.Show_Employees"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EMP_FrontEND"
+        mc:Ignorable="d"
+        Title="Show_Employees" Height="450" Width="800" Background="Black">
+    
+    
+    <DataGrid x:Name="DataGridEmployee" CanUserResizeColumns="True" Background="Black" RowBackground="Black" Foreground="Red">
+
+        <DataGrid.Resources>
+            <Style TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Foreground" Value="Red"/>
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="Margin" Value="0,1,0,0"/>
+
+
+
+            </Style>
+
+        </DataGrid.Resources>
+
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Mitarbeiter Nummer" Width="150" Binding="{Binding employeeID}" />
+            <DataGridTextColumn Header="Vorname" Width="150" Binding="{Binding FirstName}" Foreground="Red"/>
+            <DataGridTextColumn Header="Nachname" Width="150" Binding="{Binding LastName}" Foreground="Red"/>
+            <DataGridTextColumn Header="Geburtstag" Width="150" Binding="{Binding BirthDate}" Foreground="Red"/>
+
+        </DataGrid.Columns>
+
+    </DataGrid>
+
+</Window>
