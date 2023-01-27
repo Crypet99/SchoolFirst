@@ -23,7 +23,9 @@ namespace Employee_Manager
 
             //Personalnummer
             ushort PersonnelNumber = 0;
-            string path = "C:\\Users\\Student\\CHSU\\SchoolFirst\\Contacts.TXT";
+            //Schule
+            //string path = "C:\\Users\\Student\\CHSU\\SchoolFirst\\Contacts.TXT";
+            string path = "C:\\Users\\Chris\\Desktop\\GitHub\\SchoolFirst\\Contacts.TXT";
 
             PersonnelNumber = employee_Manager.ReadContacts(path, PersonnelNumber);
             Console.Clear();
