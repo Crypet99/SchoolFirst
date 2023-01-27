@@ -88,13 +88,11 @@ namespace Employee_Manager
         {
             return text.All(char.IsNumber);
         }
-
         private bool ValidBirth(DateTime Birthdate)
         {
             if (Birthdate.Year <= 1900) { Console.WriteLine("Alter ist nicht Pausible."); return false; }
             return true;
         }
-
         public ushort SetAge(Employee employee, DateTime? optional = null)
         {
             DateTime Today = DateTime.Today;
@@ -136,6 +134,17 @@ namespace Employee_Manager
                 return 30;
         }
         #endregion
+
+
+
+
+        public string changeName(Employee employee , string optional = "")
+        {
+            string temp = null;
+            Console.WriteLine(optional);
+            temp = Console.ReadLine();
+            return temp;
+        }
     }
 
 

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using EMP_Manager_Libary;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Employee_Manager
+namespace EMP_Manager_Libary
 {
     internal class Menue
     {
@@ -18,14 +19,12 @@ namespace Employee_Manager
         public void startProgramm()
         {
             // Instanzen erstellen
-            Employee_Manager employee_Manager = new Employee_Manager();
+            List_Manager employee_Manager = new List_Manager();
             Addresses addresses = new Addresses();
 
             //Personalnummer
             ushort PersonnelNumber = 0;
-            //Schule
-            //string path = "C:\\Users\\Student\\CHSU\\SchoolFirst\\Contacts.TXT";
-            string path = "C:\\Users\\Chris\\Desktop\\GitHub\\SchoolFirst\\Contacts.TXT";
+            string path = "C:\\Users\\Student\\CHSU\\SchoolFirst\\Contacts.TXT";
 
             PersonnelNumber = employee_Manager.ReadContacts(path, PersonnelNumber);
             Console.Clear();
@@ -72,7 +71,17 @@ namespace Employee_Manager
                     case 'H':
                     case 'h':
                         {
-                            Employee employee = addresses.settingValues(PersonnelNumber);
+
+                            Console.WriteLine("Bitte Vornamen Eingeben : ");
+                            string? FValue = Console.ReadLine();
+                            Console.WriteLine("Bitte Nachnamen Eingeben : ");
+                            string? LValue = Console.ReadLine();
+                            Console.WriteLine("Bitte EIn Geburtsdatum eingeben");
+                            DateTime Birthday = Convert.ToDateTime(Console.ReadLine());
+
+
+
+                            Employee employee = addresses.settingValues(PersonnelNumber ,"" ,FValue , LValue,Birthday);
                             employee_Manager.AddEmployee(employee);
                             PersonnelNumber++;
                         }
@@ -90,8 +99,9 @@ namespace Employee_Manager
                         {
                             employee_Manager.TimePlanMenue();
 
-                        }break;
-                        
+                        }
+                        break;
+
                     //Speichern
                     case 'K':
                     case 'k':
@@ -105,7 +115,7 @@ namespace Employee_Manager
                         {
 
                             employee_Manager.ShowTimePlan();
-                            
+
                         }
                         break;
 
@@ -147,10 +157,10 @@ namespace Employee_Manager
             Console.WriteLine("------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("H.Neuer Mitarbeiter\t" + "A.Alle Datensätze anzeigen\n" +
-                               "L.Mitarbeiter Löschen\t" + "E.Arbeitszeiten Anzeigen\n" +
+                               "L.Mitarbeiter Löschen\t" + /*"E.Arbeitszeiten Anzeigen\n"*/ 
                                "S.Mitarbeiter Suchen\t" + "K.Speichern\n" +
-                               "U.Urlaub Eintragen\t" + "P.Programm Beenden\n" +
-                               "D.Dienstplan Erstellen\t" + "B.Mitarbeiter Bearbeiten");
+                               "U.Urlaub Eintragen\t" + "P.Programm Beenden\n" 
+                               /*"D.Dienstplan Erstellen\t" + "B.Mitarbeiter Bearbeiten"*/);
             switch_Menue = Console.ReadKey().KeyChar;
             Console.Clear();
             return switch_Menue;

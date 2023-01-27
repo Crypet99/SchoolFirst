@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EMP_Manager_Libary;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Dynamic;
@@ -9,13 +10,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Employee_Manager
+namespace EMP_FrontEND
 {
-    internal class Employee_Manager
+    public class Employee_Manager
     {
         Employee employee = new Employee();
         Addresses addresses = new Addresses();
-        Dienstplan Timeplan = new Dienstplan();
+        // Dienstplan Timeplan = new Dienstplan();
         private List<Employee> Manager = new List<Employee>();
 
 
@@ -41,7 +42,7 @@ namespace Employee_Manager
         // Suche Mitarbeiter
         public Employee SearchEmployee()
         {
-            Console.ForegroundColor= ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Clear();
             char select = ' ';
 
@@ -63,12 +64,12 @@ namespace Employee_Manager
                             if (em.Get_LastName() == searchValue || em.Get_FirstName() == searchValue)
                             {
 
-                                Employee e = Manager.Contains
+
 
                                 ShowEmployee(em);
                                 return em;
 
-                                
+
                             }
 
                         }
@@ -137,42 +138,17 @@ namespace Employee_Manager
         }
 
         //Lösche Mitarbeiter
-        public void DeleteEmployee()
+        public void DeleteEmployee(Employee employee)
         {
-            Employee employee = SearchEmployee();
-            if (employee.Get_EmployeeID() < 9999)
-            {
-                Console.WriteLine("Sicher das sie den Mitarbeiter Löschen Wollen ? J/N");
-
-                char select = Console.ReadKey().KeyChar;
-                Console.Clear();
-                switch (select)
-                {
-                    case 'j':
-                    case 'J':
-                        {
-                            Manager.Remove(employee);
-                            Console.WriteLine("Mitarbeiter wurde Gelöscht.");
-                        }
-                        break;
-
-                    case 'n':
-                    case 'N':
-                        {
-                            Console.WriteLine("Vorgang Wird abgebrochen.");
-                        }
-                        break;
-
-                    default: Console.WriteLine("Ungültige Eingabe"); break;
-                }
-            }
-
+            Manager.Remove(employee);
 
         }
 
         // Zeige Alle Mitarbeiter
         public void ShowAllEmployees()
         {
+
+           
 
             if (Manager.Count < 1)
             {
@@ -204,6 +180,25 @@ namespace Employee_Manager
             Console.WriteLine("---------------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine();
+        }
+
+
+        public Employee[] ReturnALLEmployees()
+        {
+           
+                List<Employee> GETEMP = new List<Employee>();
+
+                if (Manager.Count < 1)
+                {
+                    Console.WriteLine("Keine Daten Vorhanden");
+                }
+
+                foreach (Employee e in Manager)
+                {
+                    GETEMP.Add(e);
+                    
+                }
+                return GETEMP.ToArray();
         }
 
         #endregion
@@ -245,12 +240,12 @@ namespace Employee_Manager
 
                     int index = 0;
 
-                    foreach(DateTime d in e._Holidays)
+                    foreach (DateTime d in e._Holidays)
                     {
 
-                        if(d.Year > 2000 ) { index++; }
+                        if (d.Year > 2000) { index++; }
                     }
-                   for(DateTime d1 = holidaybegin; d1 <= holidayends; d1 = d1.AddDays(1))
+                    for (DateTime d1 = holidaybegin; d1 <= holidayends; d1 = d1.AddDays(1))
                     {
                         e._Holidays[index] = d1;
                         index++;
@@ -272,7 +267,7 @@ namespace Employee_Manager
         {
             int holiDays = holidayEnd.Subtract(holidayBegin).Days;
 
-           
+
             if (holidayBegin < DateTime.Now || holidayEnd < DateTime.Now) { Console.WriteLine("Der Urlaub kann nicht rückwirkend beantragt werden."); return false; }
             if (e.Get_HolidaysAvailable() - holiDays < 0) { Console.WriteLine("Zu wenig Urlaubstage Verfügbar."); return false; }
             return true;
@@ -294,9 +289,9 @@ namespace Employee_Manager
 
 
 
-                  
+
                         sb.Append(e.Get_FirstName() + ";" + e.Get_LastName() + ";" + e.Get_Birthdate().ToShortDateString() + ";" + e.Get_UsedHolidays() + ";" + e.Get_HolidaysAvailable() + ";");
-                        for(int i = 0; i < e._Workdays.Length;i++)
+                        for (int i = 0; i < e._Workdays.Length; i++)
                         {
                             if (e._Workdays[i].Year > 2000) { sb.Append(e._Workdays[i].ToShortDateString() + ";"); }
                         }
@@ -314,7 +309,7 @@ namespace Employee_Manager
                     byte[] bytes = Encoding.UTF8.GetBytes(EncodeData);
                     string CodedData = Convert.ToBase64String(bytes);
 
-                   // if (CodedData == "" || CodedData == null) { return; }
+                    // if (CodedData == "" || CodedData == null) { return; }
 
                     using (StreamWriter writer = new StreamWriter(path))
                     {
@@ -341,8 +336,8 @@ namespace Employee_Manager
 
                     byte[] Base64bytes = Convert.FromBase64String(Base64Data);
                     string Datastring = Encoding.UTF8.GetString(Base64bytes);
-                    string[] Dataarray = Datastring.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
-                    
+                    string[] Dataarray = Datastring.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
                     for (int i = 0; i < Dataarray.Length; i++)
                     {
                         int temp = 0;
@@ -355,7 +350,7 @@ namespace Employee_Manager
                         employee.Set_Age(addresses.SetAge(employee, Convert.ToDateTime(con[2])));
                         employee.Set_UsedHolidays(Convert.ToUInt16(con[3]));
                         employee.Set_HolidaysAvailable(Convert.ToUInt16(con[4]));
-                        for(int y = 5; y < con.Length-1;y++)
+                        for (int y = 5; y < con.Length - 1; y++)
                         {
                             if (con[y] == "split") { temp = y + 1; break; }
                             employee._Workdays[temp] = Convert.ToDateTime(con[y]);
@@ -364,7 +359,7 @@ namespace Employee_Manager
                         int temp_2 = 0;
                         for (int y = temp; y < con.Length - 1; y++)
                         {
-                         
+
                             employee._Holidays[temp_2] = Convert.ToDateTime(con[y]);
                             temp_2++;
                         }
@@ -387,32 +382,33 @@ namespace Employee_Manager
         #endregion
 
         #region Timeplan
-       
+
         public void TimePlanMenue()
         {
-            Timeplan.TimePlanMenue(Manager);
+            // Timeplan.TimePlanMenue(Manager);
         }
 
         public void ShowTimePlan()
         {
-            Timeplan.ShowTimePlans(Manager);
-           
+            //Timeplan.ShowTimePlans(Manager);
+
 
         }
 
         public void ChangeEmployee()
         {
             Employee employee = SearchEmployee();
-
-            string new_FName = addresses.changeName(employee, "Bitte geben sie einen neuen Vornamen ein : ");
-            string new_LName = addresses.changeName(employee, "Bitte geben sie einen neuen Nachnamen ein : ");
+            Console.WriteLine("Bitte geben sie einen neuen Vornamen ein");
+            string? new_FName = Console.ReadLine(); //addresses.changeName(employee, "Bitte geben sie einen neuen Vornamen ein : ");
+            Console.WriteLine("Bitte geben sie einen neuen Nachnamen ein");
+            string? new_LName = Console.ReadLine(); //addresses.changeName(employee, "Bitte geben sie einen neuen Nachnamen ein : ");
             if (new_FName != null || new_FName != "") { employee.SET_FirstName(new_FName); }
             if (new_LName != null && new_LName != "") { employee.SET_LastName(new_LName); }
 
 
         }
 
-       
+
 
         #endregion
 

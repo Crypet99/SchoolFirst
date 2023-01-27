@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Employee_Manager
+﻿namespace EMP_Manager_Libary
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+
 
     // Person Mit allen Variablen und ZugriffsMethoden
-    internal class Employee
+    public class Employee
     {
-        private ushort _EmployeeID;
+        public ushort _EmployeeID;
         private string _FirstName;
         private string _LastName;
         private ushort _Age;
@@ -93,7 +94,7 @@ namespace Employee_Manager
 
         public void SET_FirstName(string value)
         {
-             _FirstName = value;
+            _FirstName = value;
         }
 
         public void SET_LastName(string value)
@@ -108,12 +109,12 @@ namespace Employee_Manager
 
         public void Set_HolidaysAvailable(ushort value)
         {
-             _HolidaysAvailable = value;
+            _HolidaysAvailable = value;
         }
 
-        public void Set_UsedHolidays( ushort value)
+        public void Set_UsedHolidays(ushort value)
         {
-             _UsedHolidays = value;
+            _UsedHolidays = value;
         }
 
         public void Set_Birthdate(DateTime value)
@@ -129,4 +130,5 @@ namespace Employee_Manager
 
 
 }
+
 
