@@ -15,7 +15,7 @@
         <TextBox x:Name ="Value" HorizontalAlignment="Center" Margin="0,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="290" Height="22" TextChanged="TextBox_TextChanged" Grid.Row="1"/>
         <Button Content="Suchen" HorizontalAlignment="Center" Margin="0,57,0,0" VerticalAlignment="Top" Width="122" Background="White" Click="Click_Search" Grid.Row="1"/>
 
-        <DataGrid x:Name="DataGridDelete" RowBackground="Black" VerticalAlignment="Top" Margin="0,100,0,0" Grid.Row="1" >
+        <DataGrid  x:Name="DataGridDelete" SelectedCellsChanged="ValueChanged"   AutoGenerateColumns="False" ItemsSource="{Binding}"  RowBackground="Black" VerticalAlignment="Top" Margin="0,100,0,0" Grid.Row="1"  >
 
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
@@ -29,17 +29,21 @@
                 </Style>
 
             </DataGrid.Resources>
-
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Mitarbeiter Nummer" Width="150" Binding="{Binding employeeID}" Foreground="Red" />
-                <DataGridTextColumn Header="Vorname" Width="150" Binding="{Binding FirstName}" Foreground="Red"/>
-                <DataGridTextColumn Header="Nachname" Width="150" Binding="{Binding LastName}" Foreground="Red"/>
-                <DataGridTextColumn Header="Geburtstag" Width="150" Binding="{Binding BirthDate}" Foreground="Red"/>
+                <DataGridTextColumn Header="Mitarbeiter Nummer" Width="150" Binding="{Binding employeeID}" Foreground="Red" IsReadOnly="True" />
+                <DataGridTextColumn Header="Vorname" Width="150" Binding="{Binding FirstName}" Foreground="Red" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nachname" Width="150" Binding="{Binding LastName}" Foreground="Red" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Geburtstag" Width="150" Binding="{Binding BirthDate}" Foreground="Red" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="Auswahl" Width="150" Binding="{Binding Delete}" IsReadOnly="False"/>
 
             </DataGrid.Columns>
 
 
+
+
         </DataGrid>
+        <Button Content="Ausgewählte Löschen" HorizontalAlignment="Left" Margin="481,57,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Click_Delete"/>
+        <Button Content="Schließen" HorizontalAlignment="Left" Margin="234,57,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Click_Close"/>
 
     </Grid>
 </Window>

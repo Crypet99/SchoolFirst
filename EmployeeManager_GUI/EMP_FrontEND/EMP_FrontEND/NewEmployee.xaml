@@ -16,8 +16,8 @@
 
 
         <Button x:Name="AddEmployee" Content="Mitarbeiter Hinzufügen" HorizontalAlignment="Left" Margin="23,132,0,0" VerticalAlignment="Top" Click="Click_AddEmployee"/>
-        <Button x:Name="Close" Content="Close" HorizontalAlignment="Left" Margin="170,132,0,0" VerticalAlignment="Top" Click="Click_Close" Width="54" IsCancel="True"/>
-        <Label Content="Vorname" HorizontalAlignment="Left" Margin="229,44,0,0" VerticalAlignment="Top" Height="25" Width="106" Foreground="Red"/>
+        <Button x:Name="Close" Content="Close" HorizontalAlignment="Left" Margin="170,132,0,0" VerticalAlignment="Top" Click="Click_Close" Width="54"/>
+        <Label Content="Vorname" HorizontalAlignment="Left" Margin="229,43,0,0" VerticalAlignment="Top" Height="25" Width="106" Foreground="Red"/>
         <Label Content="Nachname" HorizontalAlignment="Left" Margin="229,68,0,0" VerticalAlignment="Top" Height="25" Width="106" Foreground="Red"/>
         <Label Content="Geburtsdatum" HorizontalAlignment="Left" Margin="229,93,0,0" VerticalAlignment="Top" Height="25" Width="106" Foreground="Red"/>
 

@@ -138,36 +138,9 @@ namespace EMP_FrontEND
         }
 
         //Lösche Mitarbeiter
-        public void DeleteEmployee()
+        public void DeleteEmployee(Employee employee)
         {
-            Employee employee = SearchEmployee();
-            if (employee.Get_EmployeeID() < 9999)
-            {
-                Console.WriteLine("Sicher das sie den Mitarbeiter Löschen Wollen ? J/N");
-
-                char select = Console.ReadKey().KeyChar;
-                Console.Clear();
-                switch (select)
-                {
-                    case 'j':
-                    case 'J':
-                        {
-                            Manager.Remove(employee);
-                            Console.WriteLine("Mitarbeiter wurde Gelöscht.");
-                        }
-                        break;
-
-                    case 'n':
-                    case 'N':
-                        {
-                            Console.WriteLine("Vorgang Wird abgebrochen.");
-                        }
-                        break;
-
-                    default: Console.WriteLine("Ungültige Eingabe"); break;
-                }
-            }
-
+            Manager.Remove(employee);
 
         }
 

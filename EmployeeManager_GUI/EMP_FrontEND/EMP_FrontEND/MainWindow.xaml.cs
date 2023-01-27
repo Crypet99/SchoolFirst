@@ -55,7 +55,7 @@ namespace EMP_FrontEND
         private void Click_Delete(object sender, RoutedEventArgs e)
         {
             Delete_Employee delete_Employee= new Delete_Employee();
-            delete_Employee.ShowDialog();
+            delete_Employee.Show();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

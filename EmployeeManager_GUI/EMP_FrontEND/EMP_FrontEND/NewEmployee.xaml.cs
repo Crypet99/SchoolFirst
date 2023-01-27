@@ -48,7 +48,7 @@ namespace EMP_FrontEND
 
         private void Click_Close(object sender, RoutedEventArgs e)
         {
-           // DialogResult= false; Close();
+           DialogResult= false;
         }
 
         private void Textbox_TextChanged_DateBirth(object sender, TextChangedEventArgs e)
