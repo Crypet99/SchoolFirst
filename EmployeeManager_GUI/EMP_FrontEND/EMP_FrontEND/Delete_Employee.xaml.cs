@@ -165,7 +165,7 @@ namespace EMP_FrontEND
 
                     else if(Test == false)
                     {
-                        EmployeeToDelete.Remove(emp);,
+                        EmployeeToDelete.Remove(emp);
 
                     }
 

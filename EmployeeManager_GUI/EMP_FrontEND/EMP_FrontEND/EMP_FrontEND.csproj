@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Reference Include="EMP_Manager_Libary">
-      <HintPath>..\..\EMP_Manager_Libary\EMP_Manager_Libary\bin\Debug\net7.0\EMP_Manager_Libary.dll</HintPath>
+      <HintPath>bin\Debug\net7.0-windows\EMP_Manager_Libary.dll</HintPath>
     </Reference>
   </ItemGroup>
 
