@@ -68,9 +68,10 @@ namespace ShootingStar
                                 schwert = new Schwert();
 
                             list_Waffen.Add(schwert);
-                        }break;
+                        }
+                        break;
 
-                   
+
 
 
 
@@ -104,7 +105,7 @@ namespace ShootingStar
             }
 
         }
-        
+
         public void ShowItems(Spieler spieler)
         {
             Dictionary<string, int> dic = new Dictionary<string, int>();
@@ -119,30 +120,60 @@ namespace ShootingStar
             {
                 Console.WriteLine("-" + waffe.name);
             }
-          
+
 
             Console.WriteLine("\nBlöcke\n---------------------------------");
             // Blöcke Zählen
             foreach (Blöcke block in list_Bloecke)
             {
-                
-                if(dic.ContainsKey(block.name))
+
+                if (dic.ContainsKey(block.name))
                 {
                     int value = dic[block.name];
                     value++;
                     dic[block.name] = value;
                 }
-                else if(!dic.ContainsKey(block.name))
+                else if (!dic.ContainsKey(block.name))
                 {
                     dic[block.name] = 0;
                 }
             }
-            foreach(var item in dic)
+            foreach (var item in dic)
             {
-                Console.WriteLine("Block : " + item.Key + " ("+item.Value+")");
+                Console.WriteLine("Block : " + item.Key + " (" + item.Value + ")");
             }
 
 
+
+
+        }
+
+        public object getItem()
+        {
+            Waffen w = null;
+            string Value = "0";
+            Console.WriteLine("Bitte eine Item_ID eingeben : ");
+
+            do
+            {
+                Value = Console.ReadLine();
+
+                if (!Game.IsNumeric(Value))
+                    Console.WriteLine("Bitte eine Zahl eingeben");
+            } while (!Game.IsNumeric(Value));
+
+            int ItemID = Convert.ToInt32(Value);
+
+            foreach (Waffen waffe in list_Waffen)
+            {
+                if (waffe.id == ItemID)
+                {
+                    w = waffe;
+
+                }
+            }
+
+            return w;
 
 
         }

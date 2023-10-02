@@ -30,5 +30,10 @@ namespace ShootingStar
             InventoryManager.AddItem(enumValue, special);
         }
 
+        public void getItem()
+        {
+            InventoryManager.getItem();
+        }
+
     }
 }

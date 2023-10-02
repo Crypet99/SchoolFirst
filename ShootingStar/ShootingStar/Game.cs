@@ -48,6 +48,11 @@ namespace ShootingStar
             Console.WriteLine("\nMöchtest du dein Inventar Ansehen ?\n 1.Ja\n2.Nein");
             if(SelectYesNo());
             spieler.OpenInventory();
+
+            while(true)
+            {
+                spieler.getItem();
+            }
        
            
 
@@ -61,7 +66,7 @@ namespace ShootingStar
 
         }
 
-        private bool SelectYesNo()
+        private static bool SelectYesNo()
         {
             byte value = 0;
             bool? yesNo = null;
@@ -91,8 +96,13 @@ namespace ShootingStar
         
         }
 
+        public static bool IsNumeric(string value)
+        {
+            return value.All(char.IsNumber);
+        }
 
 
 
-}
+
+    }
 }
