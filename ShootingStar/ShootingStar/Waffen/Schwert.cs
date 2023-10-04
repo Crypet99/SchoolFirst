@@ -8,26 +8,33 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace ShootingStar
 {
+
+   
     internal class Schwert : Waffen
     {
         Random random = new Random();
-        public static int enumNumber = 11;
-        public static int Präfix = 1;
+        private static int Präfix = 1;
+        public string Class = "Schwert";
+
+
         public Schwert() 
         {
-            id = random.Next(1, 1000000000);
+            
+            id = random.Next(1, 10000);
             damage = 10;
             length = 10;
             name = "Schwert_" + Präfix++;
         }    
 
 
-        public Schwert(bool Special)
+        public Schwert(bool Special,ConsoleColor Color,string Name)
         {
-            id = random.Next(1, 1000000000);
+           
+            id = random.Next(1, 10000);
             damage = 10;
             length = 15;
-            name = Console.ReadLine();
+            color = Color;
+            name = name == "" ? Console.ReadLine() : Name;
         }
 
        

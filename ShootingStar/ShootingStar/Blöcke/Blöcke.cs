@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace ShootingStar
 {
-    internal class Blöcke
+    internal class Blöcke : Interface 
     {
         public Blöcke() { }
 
+        public int id { get; set; }
         public string name { get; set; }
         public int health { get; set; }
+
+        public string getStats() { return "Stats Blöcke"; }
+        public void Save() { }
     }
 }

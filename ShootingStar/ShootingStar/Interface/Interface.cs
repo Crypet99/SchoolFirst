@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShootingStar
 {
-    internal class Erdblock : Blöcke
+    internal interface Interface
     {
-
-        public string Class = "Erdblock";
-        public Erdblock() { name = "Erde"; health = 10; }
-
-       
+        string getStats();
+        void Save();
     }
-
 }

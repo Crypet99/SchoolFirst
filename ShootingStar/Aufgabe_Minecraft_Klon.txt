@@ -1,0 +1,32 @@
+Schreiben Sie einen Minecraft Klon:
+- Programmiersprache egal (Vorzugsweise C#)
+- Konsole oder graphische Oberfläche egal (Unity erlaubt)
+
+- Verwenden Sie eine Basisklasse "Waffe"
+- Leiten Sie mehrere Waffen davon ab, jede mit ihrem eigenen Schaden
+
+- Verwenden Sie eine Basisklasse "Blöcke"
+- Leiten Sie mehrere Blöcke davon ab, jede mit ihrem eigenen Loot und ggf. dazupassender Waffe
+
+- Bauen Sie je nach Können weitere Funktionen hinzu wie:
+	- Inventarsystem (List<Loot>)
+	- Levelgestaltung
+	- Character Movement
+	- Gegner und/oder Tiere
+	- Ein Health System (Gegner können Leben nehmen, Essen kann Leben geben)
+	- Ein Wetter und Gewand System (man kann nass werden, muss Kleidung wechseln, sonst sinken HP)
+	- Ein Crafting System (Holz + Feuerstein = Feuer, Wärme gibt HP, etc)
+
+- Verwenden Sie mindestens folgende Dinge:
+Klassen, Methoden, Properties, Ableitungen, try/catch wo notwendig, Schleifen, Verzweigungen, Zugriffsmodifizierer (public)
+-> Wenn Sie von jedem mindestens 1 verwenden = Note: 3, je nachdem was noch dazu = Note 1 oder 2
+
+- Fortgeschrittene verwenden zusätzlich: (sofort Note 2)
+Polymorphie, Interfaces (Gemeinsamkeiten), Client/Server Anwendung (Tutorial gibts von mir)
+speichern und laden Spielstände in Dateien (File.ReadAllLines oder File.WriteAllLines)
+
+- Profis: (sofort Note 1)
+Lassen den Server in einem Docker Container laufen
+Verwenden Unit Tests um ihren Code zu testen
+speichern und laden Spielstände in eine Datenbank
+Erweitern die Client/Server Anwendung um Multiplayer

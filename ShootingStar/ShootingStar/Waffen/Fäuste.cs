@@ -10,13 +10,14 @@ namespace ShootingStar
 {
     internal class Fäuste:Waffen
     {
-        Random random = new Random();
+        public string Class = "Fäuste";
         public static int enumNumber = 10;
         public static int Präfix = 1;
 
         public Fäuste()
         {
-            id = random.Next(1, 1000000000);
+            Random random = new Random();
+            id = random.Next(1, 10000);
             damage = 1;
             length = 3;
             name = "Faust_" + Präfix++;

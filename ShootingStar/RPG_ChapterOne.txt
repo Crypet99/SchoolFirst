@@ -1,0 +1,36 @@
+Du stehst am Rand eines geheimnisvollen Waldes, gehüllt in dichten Nebel.Die Bäume scheinen Geheimnisse zu flüstern und die Luft trägt eine magische Essenz.Deine Quest beginnt hier.
+;
+In Anbetracht des dichten Nebels überlegst du zuerst dein Inventar zu kontrollieren bevor du dem flüstern der Bäume 
+folgst.
+;
+Du betrittst den Wald vorsichtig, der Nebel wirbelt um dich herum, während du tiefer ins Unbekannte vordringst.
+;
+Du bemerkst einen schwachen Pfad, der tiefer in den Wald führt, und einen alten, moosbedeckten Stein mit seltsamen 
+Symbolen auf seiner Oberfläche.
+;
+Während du dich konzentrierst, beginnen die Symbole einen Sinn zu ergeben.
+Sie deuten auf einen verborgenen Schatz in der Nähe hin.
+;
+Der Pfad windet sich zwischen den Bäumen, und bald kommst du an eine Weggabelung.
+Ein Weg ist gut ausgetreten, der andere scheint weniger begangen zu sein.
+Für Welchen Weg entscheidest du dich ? 1. Der Ausgetretene weg. 2. Der Weniger begangene weg.
+;
+Du wählst den gut ausgetretenen Pfad in der Hoffnung,
+dass er zu einer sicheren Route führt.
+;
+Der Pfad führt dich zu einer Lichtung, wo du eine Gruppe freundlicher Waldbewohner triffst,
+In mitten der Waldbewohner.. eine Ente. 
+Sie ist zierlich, klein und unter dem Mondschein erkanntest du die wahre schönheit dieses Geschöpfes.
+;
+Ohne die Waldbewohner zu beachten fühlst du dich der Ente zugezogen. Ihr Federnkleid schimmert zu schön um davon abzusehen.
+Selbst den Waldebewohnern ist die Verbindung nicht entgangen und sehen dich nun als ihren Vertrauten.
+;
+In Anbetracht der Situation zogen sie ein Schimmerndes Schwert.. kurz zusammengeschreckt wurde dir bewusst, dass sie dir 
+ein Präsent entgegnen wollen. Dankbar nimmst du das Präsent entgegen und inspizierst es genau.
+;
+Nimm den weniger begangenen Pfad: Du entscheidest dich für den weniger begangenen Pfad,
+in der Erwartung, dass er versteckte Überraschungen birgt.
+Der Pfad führt dich zu einer geheimnisvollen Lichtung, wo du auf eine magische Quelle triffst,
+Die dir Weisheit gewährt
+;
+Nach der Kurzen Pause machst du dich weiter für die Erkundung des Waldes bereit, für alles, was auf dich zukommt.

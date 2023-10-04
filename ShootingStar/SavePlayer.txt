@@ -1,0 +1,7 @@
+{
+  "InventoryManager": {},
+  "name": "Crypet",
+  "description": "",
+  "health": 100,
+  "damage": 10
+}
