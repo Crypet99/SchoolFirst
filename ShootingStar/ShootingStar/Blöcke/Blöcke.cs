@@ -15,6 +15,6 @@ namespace ShootingStar
         public int health { get; set; }
 
         public string getStats() { return "Stats Blöcke"; }
-        public void Save() { }
+        public void Save(bool finished) { }
     }
 }

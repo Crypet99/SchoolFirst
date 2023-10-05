@@ -13,16 +13,18 @@ namespace ShootingStar
     {
 
       
-        public Spieler(string iname, string idescription, int ihealth, int idamage) { name = iname; description = idescription; health = ihealth; damage = idamage; }
+        public Spieler(string iname, string idescription, int ihealth, int idamage , int iLevel) { name = iname; description = idescription; health = ihealth; damage = idamage;level = iLevel; }
 
         public Inventory InventoryManager = new Inventory();
         public string name { get; set; }
         public string description { get; set; }
         public int health { get; set; }
         public int damage {  get; set; }
+        public int level { get; set; }
+
 
         string SavePathInventory = @"C:\Users\Student\Desktop\CHSU2\SchoolFirst\ShootingStar\SaveInventory.txt";
-        string SavePath = @"C:\Users\Student\Desktop\CHSU2\SchoolFirst\ShootingStar\SavePlayer.txt";
+        string SavePathPlayer = @"C:\Users\Student\Desktop\CHSU2\SchoolFirst\ShootingStar\SavePlayer.txt";
 
 
         /// <summary>
@@ -41,10 +43,10 @@ namespace ShootingStar
         /// <param name="special"></param>
         /// <param name="color"></param>
         /// <param name="name"></param>
-        public int TakeItem(Inventory.Items enumValue , bool special = false , ConsoleColor color = ConsoleColor.Gray,string name = "")
+        public int TakeItem(Inventory.Items enumValue , bool special = false , ConsoleColor color = ConsoleColor.Gray,string name = "" ,int Damage = 10 , int Lenght = 15)
         {
 
-            return InventoryManager.AddItem(enumValue, special, color,name);
+            return InventoryManager.AddItem(enumValue, special, color,name , Damage , Lenght);
             
         }
        
@@ -57,7 +59,6 @@ namespace ShootingStar
            return InventoryManager.getItem(ItemID);
         }
 
-
         // Interface
         public string getStats() 
         {
@@ -69,16 +70,16 @@ namespace ShootingStar
             sb.AppendLine("Schaden : " + damage);
             return sb.ToString();
         }
-        public void Save()
+        public void Save(bool finished)
         {
             
             StringBuilder sb = new StringBuilder();
-            sb.Append(name + ";" + description + ";" + health + ";" + damage + ";");
+            sb.Append(name + ";" + description + ";" + health + ";" + damage + ";" + level + ";" + finished + ";");  
 
-            File.WriteAllText(SavePath, sb.ToString());
+            File.WriteAllText(SavePathPlayer, sb.ToString());
 
-            string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-            File.WriteAllText(SavePath, json);
+            //string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+            //File.WriteAllText(SavePathPlayer, json);
 
             InventoryManager.SaveInventory(SavePathInventory);
 
@@ -86,7 +87,7 @@ namespace ShootingStar
 
         public bool LoadItems()
         {
-            return InventoryManager.LoadInventory(SavePathInventory);
+            return InventoryManager.LoadGameData(SavePathInventory , SavePathPlayer);
         }
 
     }

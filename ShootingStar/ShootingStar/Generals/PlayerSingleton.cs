@@ -18,7 +18,7 @@ namespace ShootingStar
 
 
             if (_instance == null)
-                _instance = new Spieler("Crypet", "", 100, 10);
+                _instance = new Spieler("Crypet", "", 100, 10,1) ;
 
             return _instance;
 

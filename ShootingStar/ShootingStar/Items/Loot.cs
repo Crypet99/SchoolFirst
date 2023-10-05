@@ -8,8 +8,11 @@ namespace ShootingStar.Items
 {
     internal class Loot
     {
+        public string Class = "Loot";
         public int ID { get; set; }
         public string name { get; set; }
-        public Loot(bool special = false ,string Name = "Dreck") { name = Name;  }
+        public string description { get; set; }
+        public int healthpoints { get; set; }
+        public Loot(bool special = false ,string Name = "Dreck" ,string description = "" , int healthpoints = 10) { name = Name;  }
     }
 }

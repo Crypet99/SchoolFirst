@@ -46,14 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle.cs" />
     <Compile Include="Blöcke\Blöcke.cs" />
     <Compile Include="Blöcke\Erdblock.cs" />
+    <Compile Include="Gegner\Gegner.cs" />
     <Compile Include="Generals\Functions.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Generals\PlayerSingleton.cs" />
     <Compile Include="Generals\Program.cs" />
-    <Compile Include="Items\Apple.cs" />
-    <Compile Include="Items\HealthItems.cs" />
     <Compile Include="Interface\Interface.cs" />
     <Compile Include="Inventory\Inventory.cs" />
     <Compile Include="Items\Loot.cs" />
@@ -62,6 +62,7 @@
     <Compile Include="Waffen\Fäuste.cs" />
     <Compile Include="Waffen\Schwert.cs" />
     <Compile Include="Waffen\Waffen.cs" />
+    <Compile Include="Gegner\Waldmeister.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

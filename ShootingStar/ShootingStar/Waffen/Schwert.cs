@@ -27,12 +27,12 @@ namespace ShootingStar
         }    
 
 
-        public Schwert(bool Special,ConsoleColor Color,string Name)
+        public Schwert(bool Special,ConsoleColor Color,string Name , int Damage , int Length)
         {
            
             id = random.Next(1, 10000);
-            damage = 10;
-            length = 15;
+            damage = Damage;
+            length = Length;
             color = Color;
             name = name == "" ? Console.ReadLine() : Name;
         }

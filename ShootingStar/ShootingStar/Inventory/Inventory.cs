@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using ShootingStar.Health;
 using ShootingStar.Items;
 using System;
 using System.Collections.Generic;
@@ -45,14 +44,13 @@ namespace ShootingStar
 
         private List<Waffen> list_Waffen = new List<Waffen>();
         private List<Blöcke> list_Bloecke = new List<Blöcke>();
-        private List<HealthItems> list_HealthItems = new List<HealthItems>();
         private List<Loot> list_loot = new List<Loot>();
         #endregion
 
         #region InventoryFunktionen
 
 
-        public int AddItem(Items enumValue, bool Special = false, ConsoleColor color = ConsoleColor.Gray, string name = "")
+        public int AddItem(Items enumValue, bool Special = false, ConsoleColor color = ConsoleColor.Gray, string name = "", int Damage = 10, int Length = 15)
         {
             int value = (int)enumValue;
             string tvalue = value.ToString();
@@ -81,7 +79,7 @@ namespace ShootingStar
                         {
                             Schwert schwert = null;
                             if (Special)
-                                schwert = new Schwert(true, color, name);
+                                schwert = new Schwert(true, color, name, Damage, Length);
                             else
                                 schwert = new Schwert();
 
@@ -124,30 +122,7 @@ namespace ShootingStar
 
                 }
             }
-            //Health Item Erstellen und Hinzufügen
-            if (tvalue.Substring(0, 1) == "3")
-            {
-                switch (value)
-                {
-                    //Schwert
-                    case 30:
-                        {
-                            Apple apple = new Apple();
-                            if (Special)
-                                apple = new Apple();
-                            else
-                                apple = new Apple();
 
-                            list_HealthItems.Add(apple);
-                        }
-                        break;
-
-
-
-
-                }
-
-            }
             // Loot Erstellen und Hinzufügen
             if (tvalue.Substring(0, 1) == "4")
             {
@@ -172,9 +147,9 @@ namespace ShootingStar
                         {
                             Loot loot = null;
                             if (Special)
-                                loot = new Loot(true,name);
+                                loot = new Loot(true, name);
                             else
-                                loot = new Loot(Special,name);
+                                loot = new Loot(Special, name );
 
                             list_loot.Add(loot);
                             return loot.ID;
@@ -234,27 +209,7 @@ namespace ShootingStar
             }
 
 
-            Console.WriteLine("\nHealthItems\n---------------------------------");
-            // HealthItems Zählen
-            foreach (HealthItems Item in list_HealthItems)
-            {
-
-                if (dicHealth.ContainsKey(Item.name))
-                {
-                    int value = dicHealth[Item.name];
-                    value++;
-                    dicHealth[Item.name] = value;
-                }
-                else if (!dicHealth.ContainsKey(Item.name))
-                {
-                    dicHealth[Item.name] = 1;
-                }
-            }
-            foreach (var item in dicHealth)
-            {
-                Console.WriteLine("HealthItems : " + item.Key + " (" + item.Value + ")");
-            }
-            Console.WriteLine("");
+           
 
 
             Console.WriteLine("\nLoot\n---------------------------------");
@@ -284,18 +239,24 @@ namespace ShootingStar
 
         }
 
-
+        // Item Holen wenn ID mitgegeben dann sucht er in allen listen nach der ID und gibt diese Zurück
         public object getItem(int ItemID)
         {
             Waffen waffe = null;
             Blöcke block = null;
-            HealthItems health = null;
             Loot loot = null;
             string Value = "0";
+            int latestChoice = 0;
 
 
             while (true)
             {
+                if (latestChoice != 0)
+                {
+                    latestChoice = 0;
+                    ItemID = 0;
+                }
+
                 Spieler spieler = PlayerSingleton.getInstance();
 
                 if (ItemID == 0)
@@ -313,8 +274,9 @@ namespace ShootingStar
                     if (!Functions.IsNumeric(Value))
                         Console.WriteLine("Bitte eine Zahl eingeben");
                 } while (!Functions.IsNumeric(Value));
-
+                
                 ItemID = Convert.ToInt32(Value == "0" ? Convert.ToString(ItemID) : Value);
+                latestChoice = ItemID;
 
                 foreach (Waffen w in list_Waffen)
                 {
@@ -335,14 +297,6 @@ namespace ShootingStar
                     }
                 }
 
-                foreach (HealthItems h in list_HealthItems)
-                {
-                    if (h.ID == ItemID)
-                    {
-                        health = h;
-
-                    }
-                }
 
                 foreach (Loot l in list_loot)
                 {
@@ -360,15 +314,13 @@ namespace ShootingStar
                     return (object)waffe;
                 else if (block != null)
                     return (object)block;
-                else if  (health != null)
-                return(object)health;
-                else if(loot != null)
-                    return(object)loot;
+                else if (loot != null)
+                    return (object)loot;
 
                 else
                 {
-                    Console.WriteLine("\nEs wurde kein Item mit dieser ID gefunden, fortfahren ohne etwas auszuwählen?");
-                    if (Functions.SelectYesNo())
+                    
+                    if (Functions.SelectYesNo("\nEs wurde kein Item mit dieser ID gefunden, fortfahren ohne etwas auszuwählen?"))
                         return null;
                     else
                         continue;
@@ -387,8 +339,8 @@ namespace ShootingStar
 
         public void SaveInventory(string SavePath)
         {
-            
-           
+
+
             string json = "";
 
             json = json + Environment.NewLine + "#";
@@ -405,12 +357,6 @@ namespace ShootingStar
                 json = json + JsonConvert.SerializeObject(item, Formatting.Indented);
                 json = json + ";";
             }
-            json = json + Environment.NewLine + "#";
-            foreach (HealthItems item in list_HealthItems)
-            {
-                json = json + JsonConvert.SerializeObject(item, Formatting.Indented);
-                json = json + ";";
-            }
 
             json = json + Environment.NewLine + "#";
             foreach (Loot item in list_loot)
@@ -419,29 +365,50 @@ namespace ShootingStar
                 json = json + ";";
             }
 
-            
+
 
             File.WriteAllText(SavePath, json);
 
-            
+
         }
 
-        public bool LoadInventory(string savePath)
+        public bool LoadGameData(string SavePathInventory , string SavePathPlayer)
         {
-            string json = File.ReadAllText(savePath);
+            Spieler spieler = PlayerSingleton.getInstance();
+            string JsonInventory = File.ReadAllText(SavePathInventory);
+            string JsonPlayer = File.ReadAllText(SavePathPlayer);
 
-            if(json != "")
+            if (JsonInventory != "")
             {
                 list_loot.Clear();
                 list_Bloecke.Clear();
-                list_HealthItems.Clear();
                 list_Waffen.Clear();
             }
 
+
+
             else
+            {
+                
+
+                spieler.TakeItem(Inventory.Items.Faust);
+                Functions.Sleep(100);
+                spieler.TakeItem(Inventory.Items.Schwert);
+                Functions.Sleep(100);
+
+                spieler.TakeItem(Inventory.Items.Erdblock);
+                spieler.TakeItem(Inventory.Items.Erdblock);
+                spieler.TakeItem(Inventory.Items.Erdblock);
+                spieler.TakeItem(Inventory.Items.Apple);
+                spieler.TakeItem(Inventory.Items.Ring, false, ConsoleColor.Black, "Ring");
                 return false;
 
-            string[] jsonClasses = json.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
+
+            }
+
+
+            // Lade Inventar
+            string[] jsonClasses = JsonInventory.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string classes in jsonClasses)
             {
                 string[] elements = classes.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
@@ -451,38 +418,32 @@ namespace ShootingStar
 
                     if (value.Contains("Fäuste"))
                     {
-                        
+
                         Waffen waffe = JsonConvert.DeserializeObject<Waffen>(value);
                         list_Waffen.Add(waffe);
                     }
 
                     if (value.Contains("Schwert"))
                     {
-                        
+
                         Waffen waffe = JsonConvert.DeserializeObject<Waffen>(value);
                         list_Waffen.Add(waffe);
                     }
 
                     if (value.Contains("Erdblock"))
                     {
-                        
+
                         Blöcke blöcke = JsonConvert.DeserializeObject<Blöcke>(value);
                         list_Bloecke.Add(blöcke);
                     }
 
-                    if (value.Contains("Apple"))
-                    {
-                        
-                        HealthItems healthItems = JsonConvert.DeserializeObject<HealthItems>(value);
-                        list_HealthItems.Add(healthItems);
-                    }
 
                     if (value.Contains("Loot"))
                     {
-                        
+
                         Loot loot = JsonConvert.DeserializeObject<Loot>(value);
-                        
-                        list_loot.Add(loot);  
+
+                        list_loot.Add(loot);
                     }
 
 
@@ -490,7 +451,21 @@ namespace ShootingStar
 
                 }
             }
-            return true;
+
+            //Lade Spielerdaten
+            if(JsonPlayer != "")
+            {
+                string[] Playerdata = JsonPlayer.Split(';');
+                spieler.name = Playerdata[0];
+                spieler.description = Playerdata[1];
+                spieler.health = Convert.ToInt32(Playerdata[2]);
+                spieler.damage = Convert.ToInt32(Playerdata[3]);
+                spieler.level = Convert.ToInt32(Playerdata[4]);
+                return Convert.ToBoolean(Playerdata[5]);
+            }
+            return false;
+
+
         }
 
 

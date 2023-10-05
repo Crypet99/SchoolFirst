@@ -30,7 +30,7 @@ namespace ShootingStar
             return sb.ToString(); 
         }
 
-        public void Save() { }
+        public void Save(bool finished) { }
         
 
         

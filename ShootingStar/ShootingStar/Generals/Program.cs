@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using ShootingStar.Health;
 using ShootingStar.Items;
 using System;
 using System.Collections.Generic;
@@ -16,67 +15,36 @@ namespace ShootingStar
 
         static void Main(string[] args)
         {
-            string selection = "";
+            
             bool bgame = true;
             int progress = 0;
-            string SavePathInventory = @"C:\Users\Student\Desktop\CHSU2\SchoolFirst\ShootingStar\SaveInventory.txt"; // Spieler Save Funktion
-            string SavePath = @"C:\Users\Student\Desktop\CHSU2\SchoolFirst\ShootingStar\SavePlayer.txt"; // Spieler Save Funktion
 
             while (bgame)
             {
 
                 Game game = new Game();
-                Console.Clear();
-                Console.WriteLine("ShootingSTAR\n---------------------");
-                Console.WriteLine("(S)piel Starten");
-                Console.WriteLine("(E)instellungen");
-                //Console.WriteLine("(I)nfos (Vor Spielstart Lesen du Opfer)");
-                Console.WriteLine("(B)eenden\n");
+                Spieler spieler = PlayerSingleton.getInstance();
 
-                do
+                foreach(var c in Enum.GetValues(typeof(ConsoleColor)))
                 {
-                    selection = (Console.ReadKey().KeyChar.ToString().ToLower());
+                    Console.ForegroundColor = (ConsoleColor)c;
+                    Console.WriteLine("\r\n\r\n\n\n\n\n\n\n\n\n\n███████╗██╗  ██╗ ██████╗  ██████╗ ████████╗██╗███╗   ██╗ ██████╗ ███████╗████████╗ █████╗ ██████╗ \r\n██╔════╝██║  ██║██╔═══██╗██╔═══██╗╚══██╔══╝██║████╗  ██║██╔════╝ ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗\r\n███████╗███████║██║   ██║██║   ██║   ██║   ██║██╔██╗ ██║██║  ███╗███████╗   ██║   ███████║██████╔╝\r\n╚════██║██╔══██║██║   ██║██║   ██║   ██║   ██║██║╚██╗██║██║   ██║╚════██║   ██║   ██╔══██║██╔══██╗\r\n███████║██║  ██║╚██████╔╝╚██████╔╝   ██║   ██║██║ ╚████║╚██████╔╝███████║   ██║   ██║  ██║██║  ██║\r\n╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝\r\n\r\n");
+                    Functions.Sleep(200);
+                    Console.Clear();
 
-                } while (!(selection == "s" || selection == "e" || selection == "b" ));
-
-
-                switch (selection)
-                {
-
-                    case "s":
-                        {
-                            Spieler spieler = PlayerSingleton.getInstance();
-                            bool loading = spieler.LoadItems();
-                            game.ChapterOne(progress);
-                        }
-                        break;
-
-                    case "e":
-                        {
-
-                        }
-                        break;
-
-                    case "i":
-                        {
-                            Console.Clear();
-                            Console.WriteLine("I -> Inventar Öffnen\nM -> Wo befindest du dich gerade\nBeliebige Taste zum Fortfahren...");
-                            Console.ReadKey();
-                        }
-                        break;
-
-                    case "b":
-                        {
-                            bgame = false;
-                        }
-                        break;
-
-
-
-
-
-
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
+                
+                bool TutorialFinished = spieler.LoadItems();
+                if (!TutorialFinished)
+                    game.ChapterOne(progress);
+
+                progress = 0;
+                game.ChapterTwo(progress);
+
+
+
+
             }
 
         }

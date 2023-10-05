@@ -13,22 +13,22 @@ Sie deuten auf einen verborgenen Schatz in der Nähe hin.
 ;
 Der Pfad windet sich zwischen den Bäumen, und bald kommst du an eine Weggabelung.
 Ein Weg ist gut ausgetreten, der andere scheint weniger begangen zu sein.
-Für Welchen Weg entscheidest du dich ? 1. Der Ausgetretene weg. 2. Der Weniger begangene weg.
+Für Welchen Weg entscheidest du dich ? 
 ;
 Du wählst den gut ausgetretenen Pfad in der Hoffnung,
 dass er zu einer sicheren Route führt.
 ;
 Der Pfad führt dich zu einer Lichtung, wo du eine Gruppe freundlicher Waldbewohner triffst,
 In mitten der Waldbewohner.. eine Ente. 
-Sie ist zierlich, klein und unter dem Mondschein erkanntest du die wahre schönheit dieses Geschöpfes.
+Sie ist zierlich, klein und im Schimmer des Mondscheins erkennst du die wahre Schönheit dieses Geschöpfes.
 ;
-Ohne die Waldbewohner zu beachten fühlst du dich der Ente zugezogen. Ihr Federnkleid schimmert zu schön um davon abzusehen.
-Selbst den Waldebewohnern ist die Verbindung nicht entgangen und sehen dich nun als ihren Vertrauten.
+Ohne die Waldbewohner zu beachten fühlst du dich der Ente zugezogen.Ihr Federnkleid gleicht der Schönheit des Mondes.
+Selbst den Waldebewohnern ist die Verbindung nicht entgangen und sehen dich als ihren Vertrauten.
 ;
-In Anbetracht der Situation zogen sie ein Schimmerndes Schwert.. kurz zusammengeschreckt wurde dir bewusst, dass sie dir 
-ein Präsent entgegnen wollen. Dankbar nimmst du das Präsent entgegen und inspizierst es genau.
+Als die Dorfbewohner dir näher kamen und dein Blick von der Ente wieder auf die Dorfbewohner wechselste, erkennst du das sie etwas tragen.
+Es ist ein Schwert. Es wirkt als würden sie es dir als Präsent überreichen wollen. Dankbar nimmst du das Präsent entgegen und inspizierst es genau.
 ;
-Nimm den weniger begangenen Pfad: Du entscheidest dich für den weniger begangenen Pfad,
+Du entscheidest dich für den weniger begangenen Pfad,
 in der Erwartung, dass er versteckte Überraschungen birgt.
 Der Pfad führt dich zu einer geheimnisvollen Lichtung, wo du auf eine magische Quelle triffst,
 Die dir Weisheit gewährt

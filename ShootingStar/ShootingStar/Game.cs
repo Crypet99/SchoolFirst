@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
@@ -13,42 +14,27 @@ namespace ShootingStar
     {
 
         public Game() { }
+
+
+        #region PlayerInformations
+
         private Spieler spieler = PlayerSingleton.getInstance();
         string pathChaperOne = @"C:\Users\Student\Desktop\CHSU2\SchoolFirst\ShootingStar\RPG_ChapterOne.txt";
         string pathChaperTwo = @"C:\Users\Student\Desktop\CHSU2\SchoolFirst\ShootingStar\RPG_ChapterTwo.txt";
-
-        private int ReadingTime = 2500;
+        private Waffen mainWeapon = null;
+        private int ReadingTime = 1;
         private string lastText = "";
         private int lastChoice = 0;
         private bool ChapterOneFinished = false;
-        #region PlayerInformations
-
-        private Waffen mainWeapon = null;
+        private bool ChapterTwoFinished = false;
 
         #endregion
 
+        #region GameChapters
         public void ChapterOne(int progress)
         {
             string[] tChapterOne = File.ReadAllText(pathChaperOne).Split(';');
             Console.Clear();
-
-            //Anfang Stats Initialisieren
-            {
-
-                //spieler.TakeItem(Inventory.Items.Faust);
-                //Functions.Sleep(100);
-                //spieler.TakeItem(Inventory.Items.Schwert);
-                //Functions.Sleep(100);
-
-                //spieler.TakeItem(Inventory.Items.Erdblock);
-                //spieler.TakeItem(Inventory.Items.Erdblock);
-                //spieler.TakeItem(Inventory.Items.Erdblock);
-                //spieler.TakeItem(Inventory.Items.Apple);
-                //spieler.TakeItem(Inventory.Items.Ring,false,ConsoleColor.Black,"Ring");
-
-            }
-
-
 
             //Anfang der Geschichte
             Console.ForegroundColor = ConsoleColor.Red;
@@ -59,20 +45,19 @@ namespace ShootingStar
             Console.WriteLine(tChapterOne[progress++]);
 
             //Inventar Auswählen ? Waffe Auswählen ? Intro 
-            Console.WriteLine("\nMöchtest du dein Inventar Ansehen ?");
-            if (Functions.SelectYesNo())
+
+            if (Functions.SelectYesNo("\nMöchtest du dein Inventar Ansehen ?"))
                 spieler.OpenInventory();
 
-            Console.WriteLine("Möchtest du eine Waffe ausrüsten?");
-
-            if (Functions.SelectYesNo())
+            if (Functions.SelectYesNo("Möchtest du eine Waffe ausrüsten?"))
             {
                 object weapon = spieler.getItem();
                 if (weapon is Waffen)
                 {
                     mainWeapon = (Waffen)weapon;
-                    Console.WriteLine("Du hast deine Erste Waffe ausgerüstet\n---------------------");
+                    Console.WriteLine("\nDu hast deine Erste Waffe ausgerüstet\n---------------------\n");
                     ShowStats(mainWeapon);
+
 
                 }
 
@@ -98,28 +83,29 @@ namespace ShootingStar
                 Functions.Sleep(ReadingTime);
             }
             //Erstes Mal Menue Aufruf
-            lastChoice = ShowMenue();
+            lastChoice = ShowMenue("1.Der Ausgetretene weg. 2.Der Weniger begangene weg.");
 
             if (lastChoice == 1)
             {
-                for(int i = 1; i <= 3; i++)
+                for (int i = 1; i <= 3; i++)
                 {
                     Console.WriteLine(tChapterOne[progress++]);
                     Functions.Sleep(ReadingTime);
                 }
                 lastText = tChapterOne[progress];
                 Console.WriteLine(lastText);
-                int Item_ID = spieler.TakeItem(Inventory.Items.Schwert, true,ConsoleColor.Blue,"The Sword of Ducks");
+                int Item_ID = spieler.TakeItem(Inventory.Items.Schwert, true, ConsoleColor.Blue, "The Sword of Ducks", 25, 20);
                 Console.WriteLine("Beliebige taste zum Inspizieren drücken...");
                 Console.ReadKey();
                 Console.Clear();
                 Console.WriteLine(lastText);
                 Waffen SwordOfDucks = (Waffen)spieler.getItem(Item_ID);
+                mainWeapon = SwordOfDucks;
                 ShowStats(SwordOfDucks);
                 Functions.Sleep(ReadingTime);
 
-                
-                
+
+
                 progress += 2; // schlechter pfad überspringen
             }
             else if (lastChoice == 2)
@@ -131,49 +117,57 @@ namespace ShootingStar
             Console.WriteLine("Beliebige Taste Zum Fortführen drücken");
             Console.ReadKey();
             Console.Clear();
-            foreach(ConsoleColor c in Enum.GetValues(typeof(ConsoleColor)))
+            foreach (ConsoleColor c in Enum.GetValues(typeof(ConsoleColor)))
             {
                 Console.Clear();
                 Console.ForegroundColor = c;
-                Console.WriteLine("Sie haben das Tutorial Beendet nun beginnt das Hauptspiel");
+                Console.WriteLine("\r\n\r\n\n\n\n\n\n\n\n████████╗██╗   ██╗████████╗ ██████╗ ██████╗ ██╗ █████╗ ██╗     \r\n╚══██╔══╝██║   ██║╚══██╔══╝██╔═══██╗██╔══██╗██║██╔══██╗██║     \r\n   ██║   ██║   ██║   ██║   ██║   ██║██████╔╝██║███████║██║     \r\n   ██║   ██║   ██║   ██║   ██║   ██║██╔══██╗██║██╔══██║██║     \r\n   ██║   ╚██████╔╝   ██║   ╚██████╔╝██║  ██║██║██║  ██║███████╗\r\n   ╚═╝    ╚═════╝    ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚══════╝\r\n██████╗ ███████╗███████╗███╗   ██╗██████╗ ███████╗████████╗    \r\n██╔══██╗██╔════╝██╔════╝████╗  ██║██╔══██╗██╔════╝╚══██╔══╝    \r\n██████╔╝█████╗  █████╗  ██╔██╗ ██║██║  ██║█████╗     ██║       \r\n██╔══██╗██╔══╝  ██╔══╝  ██║╚██╗██║██║  ██║██╔══╝     ██║       \r\n██████╔╝███████╗███████╗██║ ╚████║██████╔╝███████╗   ██║       \r\n╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝   ╚═╝       \r\n\r\n");
                 Functions.Sleep(400);
-                
-            }
 
+            }
+            ChapterOneFinished = true;
             Save(spieler);
-            
+
 
         }
 
+        
         public void ChapterTwo(int progress)
         {
+            string[] tChapterTwo = File.ReadAllText(pathChaperTwo).Split(';');
+            Waldmeister waldmeister = new Waldmeister();
+            Battle.BattleTime(spieler, waldmeister);
+            Console.ReadKey();
 
         }
 
+        #endregion
 
         #region InterfaceMethods
         private void ShowStats(Interface @interface)
         {
             Console.WriteLine(@interface.getStats());
+            Console.WriteLine("Beliebige Taste zum Fortfahren drücken");
+            Console.ReadKey();
         }
 
         private void Save(Interface @interface)
         {
-            @interface.Save();
+            @interface.Save(ChapterOneFinished);
         }
 
         #endregion
 
-        #region MenueMethods
+        #region MainMethods
 
-        private int ShowMenue()
+        private int ShowMenue(string StoryAuswahl)
         {
 
-            
+
             while (true)
             {
                 bool allowed = false;
-            
+
 
                 Console.WriteLine("\nMenueAuswahl\n------------------");
                 Console.WriteLine("1 -> Zur StoryAuswahl");
@@ -201,14 +195,16 @@ namespace ShootingStar
                     continue;
                 }
 
-                if(allowed)
+                if (allowed)
                 {
-                    switch(selection)
+                    switch (selection)
                     {
-                       
+
                         case "1":
                             {
-                                if (Functions.SelectYesNo())
+                                Console.Clear();
+
+                                if (Functions.StorySelection(lastText, StoryAuswahl))
                                     return 1;
                                 else
                                     return 2;
@@ -242,25 +238,27 @@ namespace ShootingStar
                             {
                                 Save(spieler);
                                 Console.WriteLine("Spielstand gespeichert");
-                               
-                            }break;
-                            
 
-                        
+                            }
+                            break;
 
-                          
+
+
+
+
                     }
                 }
 
 
 
-               
+
 
 
 
 
             }
         }
+
 
         #endregion
 

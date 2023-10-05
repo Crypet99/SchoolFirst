@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ShootingStar
 {
-    internal interface Interface
+    internal class Waldmeister : Gegner
     {
-        string getStats();
-        void Save(bool finished);
+        public Waldmeister() { name = "Waldmeister"; health = 100; damage = 10;  }
     }
 }
