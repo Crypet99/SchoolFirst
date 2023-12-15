@@ -64,3 +64,36 @@ C:\Users\Student\Desktop\CHSU\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\n
 C:\Users\Student\Desktop\CHSU\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.pdb
 C:\Users\Student\Desktop\CHSU\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.genruntimeconfig.cache
 C:\Users\Student\Desktop\CHSU\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\ref\WPF - Fireabase Anwendung.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\WPF - Fireabase Anwendung.exe
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\WPF - Fireabase Anwendung.deps.json
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\WPF - Fireabase Anwendung.runtimeconfig.json
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\WPF - Fireabase Anwendung.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\WPF - Fireabase Anwendung.pdb
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\Firebase.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\FireSharp.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\LiteDB.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\Microsoft.Threading.Tasks.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\System.Net.Http.Extensions.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\System.Net.Http.Primitives.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\System.Reactive.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\bin\Debug\net7.0-windows\System.Runtime.InteropServices.WindowsRuntime.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.csproj.AssemblyReference.cache
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\MainWindow.g.cs
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung_MarkupCompile.cache
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung_MarkupCompile.lref
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\MainWindow.baml
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.g.resources
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.AssemblyInfoInputs.cache
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.AssemblyInfo.cs
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.csproj.CoreCompileInputs.cache
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.csproj.CopyComplete
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\refint\WPF - Fireabase Anwendung.dll
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.pdb
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\WPF - Fireabase Anwendung.genruntimeconfig.cache
+C:\Users\Student\Desktop\CHSU\Schule\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net7.0-windows\ref\WPF - Fireabase Anwendung.dll
