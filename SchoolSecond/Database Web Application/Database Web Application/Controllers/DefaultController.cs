@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Firebase;
 using Firebase.Auth;
-using FireSharp;
 using System.IO;
 using Database_Web_Application.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 using Firebase.Auth.Providers;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+using FirebaseAdmin.Auth;
+using System.Linq.Expressions;
 
 namespace Database_Web_Application.Controllers
 {
@@ -18,14 +21,14 @@ namespace Database_Web_Application.Controllers
         FirebaseAuthConfig authConfig = new FirebaseAuthConfig()
         {
             ApiKey = "AIzaSyA5u4JqSt0sj6awoYjr2zU9mayuUQc6rZw",
-            AuthDomain = "schule2ya.firebaseapp.com"
-            
+            AuthDomain = "schule2ya.firebaseapp.com",
+            Providers = new FirebaseAuthProvider[] {new EmailProvider() }
         };
-    
 
-        
-       
-        
+
+
+
+
         public IActionResult Index()
         {
             return View();
@@ -38,10 +41,43 @@ namespace Database_Web_Application.Controllers
 
         public async Task<IActionResult> VerifyLogin(Users user)
         {
-            FirebaseAuthClient client = new FirebaseAuthClient(authConfig);
-            var result = await client.CreateUserWithEmailAndPasswordAsync("test@123.at","123");
-            return View();
+            try
+            {
+                //Admin Rechte un steuerung
+                FirebaseApp.Create(new AppOptions()
+                {
+                    Credential = GoogleCredential.FromFile("SKD.Json"),
+                });
+
+
+                //Authentifizierung user
+                var Auth = new FirebaseAuthClient(authConfig);
+                var result = await Auth.SignInWithEmailAndPasswordAsync(user.Username, user.Password);
+
+                return RedirectToAction("Login_Success");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+               return RedirectToAction("Login_Failure");
+            }
+          
             
+
+
+
+
+
+        }
+
+        public IActionResult Login_Success()
+        {
+            return View();
+        }
+
+        public IActionResult Login_Failure()
+        {
+            return View();
         }
 
 

@@ -7,8 +7,8 @@
 
 .wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /*Vertikal*/
+    align-items: center; /*Horizontal*/
     height: auto;
     min-height: 100vh;
 }
@@ -19,6 +19,7 @@
     align-content: center;
     text-align: center;
     width: 450px;
+    height:auto;
     backdrop-filter: blur(10px);
     border: 2px solid black;
     border-radius: 25px;
@@ -27,19 +28,31 @@
 .lbl_Username,
 .lbl_Password {
     margin-top: 10px;
-    align-items: center; /* Zentriert die Elemente horizontal */
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
+
+
 
 input[type=submit] {
     border: none;
     border-radius: 8px;
     margin-bottom:5px;
+    margin-right:20px;
+
 }
 
-input[type="text"],
-input[type="password"] {
+input[type="text"]
+{
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-sizing: border-box; /* Sicherstellt, dass padding nicht die Breite beeinflusst */
+    box-sizing: border-box;
 }
+input[type="password"] 
+{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-left:18px;
+    box-sizing: border-box;
+
+}
+
