@@ -19,7 +19,7 @@
     align-content: center;
     text-align: center;
     width: 450px;
-    height:auto;
+    height: auto;
     backdrop-filter: blur(10px);
     border: 2px solid black;
     border-radius: 25px;
@@ -36,23 +36,25 @@
 input[type=submit] {
     border: none;
     border-radius: 8px;
-    margin-bottom:5px;
-    margin-right:20px;
-
+    margin-bottom: 5px;
+    margin-right: 25px;
+    background-color: transparent;
 }
 
-input[type="text"]
-{
+    input[type=submit]:hover {
+        border: solid 1px;
+        backdrop-filter: blur(20px);
+    }
+
+input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 8px;
     box-sizing: border-box;
 }
-input[type="password"] 
-{
+
+input[type="password"] {
     border: 1px solid #ccc;
     border-radius: 8px;
-    margin-left:18px;
+    margin-left: 18px;
     box-sizing: border-box;
-
 }
-
