@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net7.0-windows7.0": {
+    "net6.0-windows7.0": {
       "FirebaseDatabase.net/4.2.0": {
         "type": "package",
         "dependencies": {
@@ -1210,34 +1210,34 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net7.0-windows7.0": [
+    "net6.0-windows7.0": [
       "FireSharp >= 2.0.4",
       "FirebaseDatabase.net >= 4.2.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Student\\.nuget\\packages\\": {},
+    "C:\\Users\\ChSu\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Student\\Desktop\\CHSU\\Schule\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
+      "projectUniqueName": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolFirst\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
       "projectName": "WPF - Fireabase Anwendung",
-      "projectPath": "C:\\Users\\Student\\Desktop\\CHSU\\Schule\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
-      "packagesPath": "C:\\Users\\Student\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Student\\Desktop\\CHSU\\Schule\\SchoolSecond\\WPF - Fireabase Anwendung\\obj\\",
+      "projectPath": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolFirst\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
+      "packagesPath": "C:\\Users\\ChSu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolFirst\\SchoolSecond\\WPF - Fireabase Anwendung\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ChSu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net7.0-windows"
+        "net6.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -1245,8 +1245,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net7.0-windows7.0": {
-          "targetAlias": "net7.0-windows",
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
           "projectReferences": {}
         }
       },
@@ -1257,8 +1257,8 @@
       }
     },
     "frameworks": {
-      "net7.0-windows7.0": {
-        "targetAlias": "net7.0-windows",
+      "net6.0-windows7.0": {
+        "targetAlias": "net6.0-windows",
         "dependencies": {
           "FireSharp": {
             "target": "Package",
@@ -1288,7 +1288,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -1297,40 +1297,40 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Das Paket \"FireSharp 2.0.4\" wurde nicht mit dem Projektzielframework \"net7.0-windows7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "message": "Das Paket \"FireSharp 2.0.4\" wurde nicht mit dem Projektzielframework \"net6.0-windows7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
       "libraryId": "FireSharp",
       "targetGraphs": [
-        "net7.0-windows7.0"
+        "net6.0-windows7.0"
       ]
     },
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Das Paket \"Microsoft.Bcl 1.1.9\" wurde nicht mit dem Projektzielframework \"net7.0-windows7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "message": "Das Paket \"Microsoft.Bcl 1.1.9\" wurde nicht mit dem Projektzielframework \"net6.0-windows7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
       "libraryId": "Microsoft.Bcl",
       "targetGraphs": [
-        "net7.0-windows7.0"
+        "net6.0-windows7.0"
       ]
     },
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Das Paket \"Microsoft.Bcl.Async 1.0.168\" wurde nicht mit dem Projektzielframework \"net7.0-windows7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "message": "Das Paket \"Microsoft.Bcl.Async 1.0.168\" wurde nicht mit dem Projektzielframework \"net6.0-windows7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
       "libraryId": "Microsoft.Bcl.Async",
       "targetGraphs": [
-        "net7.0-windows7.0"
+        "net6.0-windows7.0"
       ]
     },
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Das Paket \"Microsoft.Net.Http 2.2.28\" wurde nicht mit dem Projektzielframework \"net7.0-windows7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "message": "Das Paket \"Microsoft.Net.Http 2.2.28\" wurde nicht mit dem Projektzielframework \"net6.0-windows7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
       "libraryId": "Microsoft.Net.Http",
       "targetGraphs": [
-        "net7.0-windows7.0"
+        "net6.0-windows7.0"
       ]
     }
   ]

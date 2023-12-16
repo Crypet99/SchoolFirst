@@ -1,0 +1,51 @@
+﻿@model Database_Web_Application.Models.Users
+
+<head>
+    <link rel="stylesheet" href="~/css/UserLogin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-xxxxxx" crossorigin="anonymous">
+
+</head>
+
+
+
+
+<header>
+    <meta charset="utf-8" />
+</header>
+
+<body>
+
+    <form asp-action="VerifyLogin">
+    <div class="wrapper">
+        <div class="UserLoginBox">
+
+
+            <div class="lbl_Username">
+                <input type="text" class="input-field" asp-for="Username" required  />
+                <label>Username</label>
+            </div>
+
+            <div class="lbl_Password">
+                <input type="password" class="input-field" asp-for="Password" required />
+                <label>Password</label>
+            </div>
+
+            <div class="button_login">
+                <input type="submit" value="Login"/>
+            </div>
+
+        </div>
+    </div>
+    </form>
+
+
+
+
+
+</body>
+
+@*@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }*@

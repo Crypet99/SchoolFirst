@@ -1,0 +1,5 @@
+C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net6.0-windows\WPF - Fireabase Anwendung.csproj.AssemblyReference.cache
+C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net6.0-windows\WPF - Fireabase Anwendung_MarkupCompile.cache
+C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\SchoolSecond\WPF - Fireabase Anwendung\obj\Debug\net6.0-windows\WPF - Fireabase Anwendung_MarkupCompile.lref
