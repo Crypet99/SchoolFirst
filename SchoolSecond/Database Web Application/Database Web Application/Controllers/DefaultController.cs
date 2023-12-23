@@ -49,10 +49,19 @@ namespace Database_Web_Application.Controllers
                     Credential = GoogleCredential.FromFile("SKD.Json"),
                 });
 
-
                 //Authentifizierung user
                 var Auth = new FirebaseAuthClient(authConfig);
                 var result = await Auth.SignInWithEmailAndPasswordAsync(user.Username, user.Password);
+
+                UserRecord userRecord = await FirebaseAuth.DefaultInstance.GetUserAsync(result.User.Uid);
+
+               
+
+               
+
+                
+
+                
 
                 return RedirectToAction("Login_Success");
             }
@@ -61,6 +70,8 @@ namespace Database_Web_Application.Controllers
                 Console.WriteLine(ex.Message);
                return RedirectToAction("Login_Failure");
             }
+
+            
           
             
 

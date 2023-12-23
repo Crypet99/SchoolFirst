@@ -1222,11 +1222,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolFirst\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
+      "projectUniqueName": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
       "projectName": "WPF - Fireabase Anwendung",
-      "projectPath": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolFirst\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
+      "projectPath": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
       "packagesPath": "C:\\Users\\ChSu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolFirst\\SchoolSecond\\WPF - Fireabase Anwendung\\obj\\",
+      "outputPath": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\WPF - Fireabase Anwendung\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

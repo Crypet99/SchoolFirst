@@ -58,3 +58,11 @@ input[type="password"] {
     margin-left: 18px;
     box-sizing: border-box;
 }
+
+.Register {
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    margin-right: 25px;
+    background-color: transparent;
+}

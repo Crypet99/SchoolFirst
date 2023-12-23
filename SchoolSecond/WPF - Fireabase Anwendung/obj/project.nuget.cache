@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YAkkalfJlFSfdm2eqaTJkc6Zar2K5vNYl4vaUDgZ/WYcy8Qj9xC7J+HPml4dNSFu8OgxCU3FtoaLBGTbfEdKgg==",
+  "dgSpecHash": "VPbGIIgISWm7IJBtJQDJBmts2anusjT9xaVE21pm7Osn9Qzl0JrufYMboURBkcoJOno7Y7xv726Bw72qPtK2jQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolFirst\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
+  "projectFilePath": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\WPF - Fireabase Anwendung\\WPF - Fireabase Anwendung.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ChSu\\.nuget\\packages\\firebasedatabase.net\\4.2.0\\firebasedatabase.net.4.2.0.nupkg.sha512",
     "C:\\Users\\ChSu\\.nuget\\packages\\firesharp\\2.0.4\\firesharp.2.0.4.nupkg.sha512",
