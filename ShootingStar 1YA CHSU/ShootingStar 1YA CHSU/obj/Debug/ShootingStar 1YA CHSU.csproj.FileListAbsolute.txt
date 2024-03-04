@@ -1,8 +1,0 @@
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\ShootingStar 1YA CHSU\ShootingStar 1YA CHSU\bin\Debug\ShootingStar 1YA CHSU.exe.config
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\ShootingStar 1YA CHSU\ShootingStar 1YA CHSU\bin\Debug\ShootingStar 1YA CHSU.exe
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\ShootingStar 1YA CHSU\ShootingStar 1YA CHSU\bin\Debug\ShootingStar 1YA CHSU.pdb
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\ShootingStar 1YA CHSU\ShootingStar 1YA CHSU\obj\Debug\ShootingStar 1YA CHSU.csproj.AssemblyReference.cache
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\ShootingStar 1YA CHSU\ShootingStar 1YA CHSU\obj\Debug\ShootingStar 1YA CHSU.csproj.SuggestedBindingRedirects.cache
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\ShootingStar 1YA CHSU\ShootingStar 1YA CHSU\obj\Debug\ShootingStar 1YA CHSU.csproj.CoreCompileInputs.cache
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\ShootingStar 1YA CHSU\ShootingStar 1YA CHSU\obj\Debug\ShootingStar 1YA CHSU.exe
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\ShootingStar 1YA CHSU\ShootingStar 1YA CHSU\obj\Debug\ShootingStar 1YA CHSU.pdb

@@ -63,7 +63,7 @@ namespace Employee_Manager
                             if (em.Get_LastName() == searchValue || em.Get_FirstName() == searchValue)
                             {
 
-                                Employee e = Manager.Contains
+                               // Employee e = Manager.Contains
 
                                 ShowEmployee(em);
                                 return em;

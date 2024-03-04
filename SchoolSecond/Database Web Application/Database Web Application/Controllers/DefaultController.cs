@@ -9,6 +9,7 @@ using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using FirebaseAdmin.Auth;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Http.Metadata;
 
 namespace Database_Web_Application.Controllers
 {
@@ -87,6 +88,11 @@ namespace Database_Web_Application.Controllers
         }
 
         public IActionResult Login_Failure()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
         {
             return View();
         }

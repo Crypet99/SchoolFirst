@@ -1,8 +1,0 @@
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\Employee_Manager\Employee_Manager\bin\Debug\Employee_Manager.exe.config
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\Employee_Manager\Employee_Manager\bin\Debug\Employee_Manager.exe
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\Employee_Manager\Employee_Manager\bin\Debug\Employee_Manager.pdb
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\Employee_Manager\Employee_Manager\obj\Debug\Employee_Manager.csproj.AssemblyReference.cache
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\Employee_Manager\Employee_Manager\obj\Debug\Employee_Manager.csproj.SuggestedBindingRedirects.cache
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\Employee_Manager\Employee_Manager\obj\Debug\Employee_Manager.csproj.CoreCompileInputs.cache
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\Employee_Manager\Employee_Manager\obj\Debug\Employee_Manager.exe
-C:\Users\ChSu\Desktop\HilfenASE\SchoolProjekte\SchoolFirst\Employee_Manager\Employee_Manager\obj\Debug\Employee_Manager.pdb

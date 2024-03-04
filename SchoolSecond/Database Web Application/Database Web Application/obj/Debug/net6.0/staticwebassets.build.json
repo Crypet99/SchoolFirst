@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ggNdBRqHfMxKcAT3avj6ef/qRaFxe20Eee6E9dAz0Lw=",
+  "Hash": "lxgM6hiuNcG+x/kpAbbvF/2YrSCqN/d2M8Miy4eE6AU=",
   "Source": "Database Web Application",
   "BasePath": "_content/Database Web Application",
   "Mode": "Default",
@@ -68,6 +68,23 @@
       "OriginalItemSpec": "wwwroot\\css\\Index.css"
     },
     {
+      "Identity": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\Database Web Application\\Database Web Application\\wwwroot\\css\\Register.css",
+      "SourceId": "Database Web Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\Database Web Application\\Database Web Application\\wwwroot\\",
+      "BasePath": "_content/Database Web Application",
+      "RelativePath": "css/Register.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Register.css"
+    },
+    {
       "Identity": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\Database Web Application\\Database Web Application\\wwwroot\\css\\site.css",
       "SourceId": "Database Web Application",
       "SourceType": "Discovered",
@@ -85,12 +102,12 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\Database Web Application\\Database Web Application\\wwwroot\\css\\UserLogin_New.css",
+      "Identity": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\Database Web Application\\Database Web Application\\wwwroot\\css\\USER_Login.css",
       "SourceId": "Database Web Application",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\Database Web Application\\Database Web Application\\wwwroot\\",
       "BasePath": "_content/Database Web Application",
-      "RelativePath": "css/UserLogin_New.css",
+      "RelativePath": "css/USER_Login.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,7 +116,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\UserLogin_New.css"
+      "OriginalItemSpec": "wwwroot\\css\\USER_Login.css"
     },
     {
       "Identity": "C:\\Users\\ChSu\\Desktop\\HilfenASE\\SchoolProjekte\\SchoolProjekte\\SchoolSecond\\Database Web Application\\Database Web Application\\wwwroot\\favicon.ico",
